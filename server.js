@@ -101,9 +101,10 @@ function startWorkerServer() {
 
     if (reqPath === '/' || reqPath === '/admin') reqPath = '/index.html';
 
-    // Production Asset Optimization (Checklist #16: Automatically serve minified assets)
-    let filePath;
-    if (reqPath === '/style.css' && fs.existsSync(path.join(__dirname, 'public', 'style.min.css'))) {
+    // Alias hero video paths directly to master video
+    if (reqPath.includes('06_1200vh_couture_fashion_video.mp4') || reqPath.includes('hero-fashion-video.mp4')) {
+      filePath = path.join(__dirname, 'public', 'assets', 'hero', 'hero-video.mp4');
+    } else if (reqPath === '/style.css' && fs.existsSync(path.join(__dirname, 'public', 'style.min.css'))) {
       filePath = path.join(__dirname, 'public', 'style.min.css');
     } else if (reqPath === '/script.js' && fs.existsSync(path.join(__dirname, 'public', 'script.min.js'))) {
       filePath = path.join(__dirname, 'public', 'script.min.js');

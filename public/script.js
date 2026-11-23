@@ -218,9 +218,15 @@ let isVideoReady = false;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (heroVideo) {
+  if (heroVideo.readyState >= 1) {
+    isVideoReady = true;
+  }
   heroVideo.addEventListener('loadedmetadata', () => {
     isVideoReady = true;
     heroVideo.pause();
+  });
+  heroVideo.addEventListener('canplay', () => {
+    isVideoReady = true;
   });
 }
 
@@ -263,28 +269,19 @@ function onHeroScroll() {
 
 window.addEventListener('scroll', onHeroScroll, { passive: true });
 
-// Hero Scrubber State: Idle-pausing loop to eliminate 60fps idle CPU usage (Checklist #15)
-let isScrubbingActive = false;
-
-function startHeroScrubbing() {
-  if (!isScrubbingActive && isVideoReady && !prefersReducedMotion) {
-    isScrubbingActive = true;
-    requestAnimationFrame(updateVideoScrub);
-  }
-}
-
-// Animation Loop: LERP Video Scrubbing (Pauses automatically when settled)
 function updateVideoScrub() {
-  if (isVideoReady && !prefersReducedMotion && heroVideo) {
-    const diff = targetVideoTime - heroVideo.currentTime;
-    if (Math.abs(diff) > 0.005) {
-      heroVideo.currentTime += diff * 0.06;
-      requestAnimationFrame(updateVideoScrub);
-      return;
+  if (heroVideo && !prefersReducedMotion) {
+    if (heroVideo.readyState >= 1) isVideoReady = true;
+    if (isVideoReady) {
+      const diff = targetVideoTime - heroVideo.currentTime;
+      if (Math.abs(diff) > 0.02) {
+        heroVideo.currentTime += diff * 0.08;
+      }
     }
   }
-  isScrubbingActive = false;
+  requestAnimationFrame(updateVideoScrub);
 }
+requestAnimationFrame(updateVideoScrub);
 
 /* ==========================================================================
    3. Products Catalogue Rendering, Collection Opening & Filtering
@@ -1823,7 +1820,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initStitchingVideoShowcase();
   initStoryDressSlider();
   initSocialReels();
-  initVideoLazyObserver();
+  // initVideoLazyObserver();
 
   // Auto-open admin modal if visiting /admin or #admin
   if (window.location.pathname.includes('/admin') || window.location.hash === '#admin' || window.location.search.includes('admin=true')) {
