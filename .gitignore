@@ -35,6 +35,9 @@ Thumbs.db
 *.swp
 *.swo
 
+# TypeScript
+*.tsbuildinfo
+
 # Temporary scratch & extraction scripts
 scratch/
 scripts/scratch/

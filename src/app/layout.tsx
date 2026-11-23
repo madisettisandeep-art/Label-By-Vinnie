@@ -27,6 +27,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_CONFIG.url),
   title: `${SITE_CONFIG.name} | ${SITE_CONFIG.tagline}`,
   description: SITE_CONFIG.description,
   openGraph: {

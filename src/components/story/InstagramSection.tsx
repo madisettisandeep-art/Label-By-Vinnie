@@ -205,16 +205,8 @@ export function InstagramSection() {
                 </div>
                 <p className="font-serif text-base mt-3 text-warm-ivory">{reel.label}</p>
               </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-              </a>
 
-              <span className="absolute bottom-3 left-3 z-10 bg-espresso/85 text-soft-ivory text-[0.58rem] tracking-luxury uppercase px-2.5 py-1 font-semibold border-l-2 border-champagne-gold">
+              <span className="absolute bottom-3 left-3 z-10 bg-espresso/85 text-soft-ivory text-[0.58rem] tracking-luxury uppercase px-2.5 py-1 font-semibold border-l-2 border-champagne-gold pointer-events-none">
                 REEL
               </span>
             </div>

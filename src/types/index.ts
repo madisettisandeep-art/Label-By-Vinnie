@@ -12,7 +12,7 @@ export interface Product {
   id: string;
   name: string;
   slug: string;
-  category: 'ethnic' | 'western' | 'contemporary' | 'couture';
+  category: 'ethnic' | 'western' | 'contemporary' | 'couture' | 'chanderi' | 'custom' | string;
   categoryTitle: string;
   price: number; // in INR
   description: string;
