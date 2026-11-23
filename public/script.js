@@ -1027,17 +1027,70 @@ Thank you.`;
   saveCart();
   updateCartUI();
 
-  // 5. Trigger WhatsApp Concierge Link
+  // 5. Trigger WhatsApp Concierge Link directly
   const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
-  window.open(waUrl, '_blank');
-
-  alert(`Your Order Request [${ref}] has been recorded. Continuing to WhatsApp with your order details.`);
+  const win = window.open(waUrl, '_blank');
+  if (!win || win.closed || typeof win.closed === 'undefined') {
+    window.location.href = waUrl;
+  }
   });
 }
 
 /* ==========================================================================
-   5. Custom Stitching Measurement Studio
+   5. Custom Stitching & 2D Drape Studio (Madhura Reference Implementation)
    ========================================================================== */
+function initStitchingStudio() {
+  const swatches = document.querySelectorAll('.studio-swatch-card');
+  const silhouettes = document.querySelectorAll('.silhouette-pill-btn');
+  const drapeImg = document.getElementById('studio-drape-preview-img');
+  const drapeTitle = document.getElementById('studio-drape-title');
+  const drapeDesc = document.getElementById('studio-drape-desc');
+  const drapePrice = document.getElementById('studio-est-price');
+  const selectedFabricName = document.getElementById('selected-fabric-name');
+  const selectedGarmentName = document.getElementById('selected-garment-name');
+  const hiddenFabric = document.getElementById('stitch-fabric');
+  const hiddenGarment = document.getElementById('stitch-garment');
+
+  let currentFabric = 'Pure Chanderi Silk Zari Booti';
+  let currentGarment = 'Designer Blouse (Potli & Sweetheart)';
+  let currentFabricPrice = 2499;
+  let currentGarmentBase = 1800;
+  let currentDrapeImg = '/assets/stitching/navy-blue-zari-border-blouse.jpg';
+
+  function updateDrapeView() {
+    if (selectedFabricName) selectedFabricName.textContent = currentFabric;
+    if (selectedGarmentName) selectedGarmentName.textContent = currentGarment;
+    if (hiddenFabric) hiddenFabric.value = currentFabric;
+    if (hiddenGarment) hiddenGarment.value = currentGarment;
+    if (drapeImg) drapeImg.src = currentDrapeImg;
+    if (drapeTitle) drapeTitle.textContent = `Bespoke ${currentGarment}`;
+    if (drapeDesc) drapeDesc.textContent = `Simulated in ${currentFabric} with master handloom finish and custom French seams.`;
+    const est = currentFabricPrice + (currentGarmentBase > 2000 ? 600 : 0);
+    if (drapePrice) drapePrice.textContent = `₹${est.toLocaleString('en-IN')}`;
+  }
+
+  swatches.forEach(card => {
+    card.addEventListener('click', () => {
+      swatches.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      currentFabric = card.getAttribute('data-fabric') || 'Pure Chanderi Silk Zari Booti';
+      currentFabricPrice = parseInt(card.getAttribute('data-price') || '2499', 10);
+      currentDrapeImg = card.getAttribute('data-img') || currentDrapeImg;
+      updateDrapeView();
+    });
+  });
+
+  silhouettes.forEach(btn => {
+    btn.addEventListener('click', () => {
+      silhouettes.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentGarment = btn.getAttribute('data-garment') || 'Designer Blouse';
+      currentGarmentBase = parseInt(btn.getAttribute('data-base') || '1800', 10);
+      updateDrapeView();
+    });
+  });
+}
+
 if (openStitchingModalBtn && stitchingBackdrop) {
   openStitchingModalBtn.addEventListener('click', () => {
     stitchingBackdrop.classList.add('open');
@@ -1053,44 +1106,47 @@ if (stitchingForm) {
   stitchingForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const garment = document.getElementById('stitch-garment').value;
-  const fabric = document.getElementById('stitch-fabric').value;
-  const client = document.getElementById('stitch-client').value;
-  const notes = document.getElementById('stitch-notes').value;
+  const garment = document.getElementById('stitch-garment')?.value || 'Designer Blouse';
+  const fabric = document.getElementById('stitch-fabric')?.value || 'Pure Chanderi Silk Zari Booti';
+  const client = document.getElementById('stitch-client')?.value || 'Boutique Client';
+  const phone = document.getElementById('stitch-phone')?.value || '';
+  const notes = document.getElementById('m-notes')?.value || document.getElementById('stitch-notes')?.value || '';
 
-  const bust = document.getElementById('m-bust').value || '-';
-  const waist = document.getElementById('m-waist').value || '-';
-  const hip = document.getElementById('m-hip').value || '-';
-  const shoulder = document.getElementById('m-shoulder').value || '-';
-  const armhole = document.getElementById('m-armhole').value || '-';
-  const sleeve = document.getElementById('m-sleeve').value || '-';
-  const length = document.getElementById('m-length').value || '-';
+  const bust = document.getElementById('m-bust')?.value || '-';
+  const waist = document.getElementById('m-waist')?.value || '-';
+  const hip = document.getElementById('m-hip')?.value || '-';
+  const shoulder = document.getElementById('m-shoulder')?.value || '-';
+  const armhole = document.getElementById('m-armhole')?.value || '-';
+  const sleeve = document.getElementById('m-sleeve')?.value || '-';
+  const length = document.getElementById('m-length')?.value || '-';
+  const frontNeck = document.getElementById('m-front-neck')?.value || '-';
 
   const ref = `STITCH-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
 
   const stitchMessage = 
 `Hello LABEL BY VINNIE,
 
-I would like to submit a Custom Stitching Enquiry.
+I would like to submit a Custom Stitching & Drape Enquiry.
 
 Enquiry Ref: ${ref}
 Client Name: ${client}
-Garment: ${garment}
-Fabric: ${fabric}
+WhatsApp Contact: ${phone}
+Garment Silhouette: ${garment}
+Fabric Selected: ${fabric}
 
-Measurements (Inches):
-Bust: ${bust} | Waist: ${waist} | Hip: ${hip}
-Shoulder: ${shoulder} | Armhole: ${armhole} | Sleeve: ${sleeve} | Length: ${length}
+Custom Measurements (Inches):
+Bust: ${bust}" | Waist: ${waist}" | Hip: ${hip}"
+Shoulder: ${shoulder}" | Armhole: ${armhole}" | Sleeve: ${sleeve}" | Length: ${length}" | Front Neck: ${frontNeck}"
 
-Design Details:
-${notes || 'Standard custom fit as per atelier design.'}
+Design Details & Customization:
+${notes || 'Standard bespoke tailoring as per atelier design.'}
 
-Please let me know fabric options, quotation, and crafting timeline.`;
+Please confirm fabric yardage, quotation, and crafting timeline.`;
 
   // Save to database
   stitchingRequests.unshift({
-    ref, client, garment, fabric,
-    measurements: { bust, waist, hip, shoulder, armhole, sleeve, length },
+    ref, client, phone, garment, fabric,
+    measurements: { bust, waist, hip, shoulder, armhole, sleeve, length, frontNeck },
     notes,
     createdAt: new Date().toISOString()
   });
@@ -1098,9 +1154,10 @@ Please let me know fabric options, quotation, and crafting timeline.`;
 
   stitchingBackdrop.classList.remove('open');
   const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(stitchMessage)}`;
-  window.open(waUrl, '_blank');
-
-  alert(`Your Custom Stitching Request [${ref}] has been generated. Opening WhatsApp consultation.`);
+  const win = window.open(waUrl, '_blank');
+  if (!win || win.closed || typeof win.closed === 'undefined') {
+    window.location.href = waUrl;
+  }
   });
 }
 
@@ -1949,6 +2006,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initAdminCinemaManager();
   updateCartUI();
   initStitchingVideoShowcase();
+  initStitchingStudio();
   initStoryDressSlider();
   initSocialReels();
   // initVideoLazyObserver();

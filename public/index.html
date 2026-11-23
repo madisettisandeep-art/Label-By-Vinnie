@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=2.2" />
+  <link rel="stylesheet" href="style.css?v=2.3" />
 </head>
 <body class="bg-warm-ivory text-espresso">
 
@@ -118,46 +118,11 @@
           </svg>
           <span class="cart-badge" id="cart-count">0</span>
         </button>
-
-        <!-- Mobile Menu Toggle Button -->
-        <button type="button" class="mobile-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Navigation Drawer -->
-  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
-    <div class="mobile-drawer-content">
-      <a href="#hero" class="mobile-nav-link">Home</a>
-      
-      <!-- Mobile Collapsible Shop By Collection -->
-      <div class="mobile-nav-collapsible">
-        <button type="button" class="mobile-nav-link flex justify-between items-center w-full" id="drawer-coll-toggle">
-          <span>Shop By Collection</span>
-          <span class="text-xs">&darr;</span>
-        </button>
-        <div class="mobile-coll-subitems" id="mobile-coll-subitems">
-          <a href="#shop" class="mobile-sub-link" data-category="all">All Collections</a>
-          <a href="#shop" class="mobile-sub-link" data-category="blouses">Blouses</a>
-          <a href="#shop" class="mobile-sub-link" data-category="ethnic">Ethnic Wear</a>
-          <a href="#shop" class="mobile-sub-link" data-category="chanderi">Banarasi &amp; Chanderi</a>
-          <a href="#shop" class="mobile-sub-link" data-category="coords">Co-ord Sets</a>
-          <a href="#shop" class="mobile-sub-link" data-category="western">Western &amp; Fusion</a>
-          <a href="#shop" class="mobile-sub-link" data-category="custom">Custom Stitching</a>
-        </div>
-      </div>
-
-      <a href="#custom-stitching" class="mobile-nav-link">Custom Stitching</a>
-      <a href="#story" class="mobile-nav-link">Our Story</a>
-      <a href="#contact" class="mobile-nav-link">Contact</a>
-    </div>
-  </div>
-
-    <!-- C. Phase 2 & 5: Cinematic Hero Section with Controlled Scrubbing Video -->
+  <!-- C. Phase 2 & 5: Cinematic Hero Section with Controlled Scrubbing Video -->
   <section id="hero" class="cinematic-hero-section hero-scroll-section">
     <!-- Pinned 1200vh Scroll Track -->
     <div class="hero-pinned-track hero-track" id="hero-track">
@@ -1379,44 +1344,105 @@
     </div>
   </div>
 
-  <!-- L. Bespoke Custom Measurements Modal Studio -->
-  <div class="modal-backdrop" id="stitching-modal-backdrop" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h3 class="modal-title">BESPOKE MEASUREMENT STUDIO</h3>
+  <!-- L. Bespoke Custom Measurements Modal Studio (Visual Drape Reference: Madhura Studio) -->
+  <div class="modal-backdrop stitching-modal-backdrop" id="stitching-modal-backdrop" aria-hidden="true">
+    <div class="stitching-dialog" role="dialog" aria-modal="true" aria-labelledby="stitching-modal-title">
+      <div class="modal-header stitching-modal-header">
+        <div>
+          <span class="stitching-kicker">2D DRAPE SIMULATOR &bull; BESPOKE TAILORING</span>
+          <h3 class="modal-title" id="stitching-modal-title">Custom Measurement &amp; Fabric Studio</h3>
+        </div>
         <button type="button" class="close-modal-btn" id="close-stitching-btn" aria-label="Close dialog">&times;</button>
       </div>
 
-      <div class="modal-body">
+      <div class="modal-body stitching-modal-body">
         <p class="modal-lead">
-          Submit your measurements for custom tailored designer blouses, lehenga cholis, and kurta sets. Designer Vinnie personally verifies patterns before cutting.
+          Select your pure handloom fabric swatch, choose your garment silhouette, and enter your tailored inches. Designer Vinnie personally verifies pattern cuts before stitching.
         </p>
 
-        <form id="stitching-form">
-          <div class="form-row-2">
-            <div class="form-group">
-              <label for="stitch-garment">Garment Type *</label>
-              <select id="stitch-garment" required>
-                <option value="Designer Blouse">Designer Blouse</option>
-                <option value="Anarkali Suit">Anarkali Suit</option>
-                <option value="Kurta &amp; Palazzo Set">Kurta &amp; Palazzo Set</option>
-                <option value="Lehenga Choli">Lehenga Choli</option>
-                <option value="Western Contemporary Dress">Western Contemporary Dress</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="stitch-fabric">Fabric Selection *</label>
-              <select id="stitch-fabric" required>
-                <option value="Pure Chanderi Silk">Pure Chanderi Silk</option>
-                <option value="Handloom Bandhani Silk">Handloom Bandhani Silk</option>
-                <option value="Heavy Silk Blend with Zari">Heavy Silk Blend with Zari</option>
-                <option value="Mulmul Cotton">Breathable Mulmul Cotton</option>
-                <option value="Client Supplied Fabric">Client Supplied Fabric</option>
-              </select>
+        <!-- 1. Visual Fabric Swatches (Reference: Madhura Visualize Fabric) -->
+        <div class="studio-option-section">
+          <label class="studio-section-label">
+            <span>1. SELECT PURE FABRIC SWATCH:</span>
+            <strong class="selected-badge" id="selected-fabric-name">Pure Chanderi Silk Zari Booti</strong>
+          </label>
+          <div class="studio-swatches-grid" id="studio-swatches-grid">
+            <button type="button" class="studio-swatch-card active" data-fabric="Pure Chanderi Silk Zari Booti" data-img="/assets/products/chanderi-zari-booti-suit-set.jpg" data-price="2499">
+              <img src="/assets/products/chanderi-zari-booti-suit-set.jpg" alt="Chanderi Silk" class="swatch-img" />
+              <div class="swatch-info">
+                <span class="swatch-title">Chanderi Zari</span>
+                <span class="swatch-sub">Golden Weave</span>
+              </div>
+            </button>
+            <button type="button" class="studio-swatch-card" data-fabric="Handloom Bandhani Silk" data-img="/assets/products/pista-green-bandhani-3piece-set.jpg" data-price="2799">
+              <img src="/assets/products/pista-green-bandhani-3piece-set.jpg" alt="Bandhani Silk" class="swatch-img" />
+              <div class="swatch-info">
+                <span class="swatch-title">Bandhani Silk</span>
+                <span class="swatch-sub">Hand Tie-Dye</span>
+              </div>
+            </button>
+            <button type="button" class="studio-swatch-card" data-fabric="Banarasi Hand Mirror Brocade" data-img="/assets/products/exclusive-banarasi-chanderi-mirror-set.jpg" data-price="3299">
+              <img src="/assets/products/exclusive-banarasi-chanderi-mirror-set.jpg" alt="Banarasi Mirror" class="swatch-img" />
+              <div class="swatch-info">
+                <span class="swatch-title">Banarasi Mirror</span>
+                <span class="swatch-sub">Hand Mirror Work</span>
+              </div>
+            </button>
+            <button type="button" class="studio-swatch-card" data-fabric="Midnight Navy Silk" data-img="/assets/stitching/navy-blue-zari-border-blouse.jpg" data-price="2199">
+              <img src="/assets/stitching/navy-blue-zari-border-blouse.jpg" alt="Navy Blue Silk" class="swatch-img" />
+              <div class="swatch-info">
+                <span class="swatch-title">Navy Blue Silk</span>
+                <span class="swatch-sub">Lustrous Shimmer</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Target Garment Silhouette (Reference: Madhura Silhouette Selector) -->
+        <div class="studio-option-section mt-4">
+          <label class="studio-section-label">
+            <span>2. SELECT GARMENT SILHOUETTE:</span>
+            <strong class="selected-badge" id="selected-garment-name">Designer Blouse (Potli &amp; Sweetheart)</strong>
+          </label>
+          <div class="studio-silhouettes-grid" id="studio-silhouettes-grid">
+            <button type="button" class="silhouette-pill-btn active" data-garment="Designer Blouse" data-detail="Potli Sleeves &amp; Sweetheart Neck" data-base="1800">
+              <span>✂️ Designer Blouse</span>
+            </button>
+            <button type="button" class="silhouette-pill-btn" data-garment="Floor-Length Anarkali" data-detail="Kalidar Flare &amp; Yoke Detailing" data-base="3500">
+              <span>👗 Royal Anarkali Suit</span>
+            </button>
+            <button type="button" class="silhouette-pill-btn" data-garment="Kurta &amp; Palazzo Set" data-detail="Straight Cut with Zari Border" data-base="2600">
+              <span>✨ Kurta &amp; Palazzo</span>
+            </button>
+            <button type="button" class="silhouette-pill-btn" data-garment="Bridal Lehenga Choli" data-detail="Can-Can Flared with Latkans" data-base="4800">
+              <span>👑 Heritage Lehenga</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. Live 2D Drape Simulation & Price Card -->
+        <div class="studio-drape-card mt-4">
+          <div class="drape-img-wrap">
+            <img src="/assets/stitching/navy-blue-zari-border-blouse.jpg" id="studio-drape-preview-img" alt="Simulated Drape" />
+            <span class="drape-live-tag">LIVE SIMULATION</span>
+          </div>
+          <div class="drape-details">
+            <h4 class="drape-heading" id="studio-drape-title">Bespoke Designer Blouse</h4>
+            <p class="drape-desc" id="studio-drape-desc">Simulated in Pure Chanderi Silk with Potli sleeve detailing and custom French seams.</p>
+            <div class="drape-meta-row">
+              <span class="drape-est-label">Estimated Tailoring:</span>
+              <strong class="drape-est-price" id="studio-est-price">&#8377;2,499</strong>
+              <span class="drape-dispatch-tag">&#10003; 7-10 Days Worldwide</span>
             </div>
           </div>
+        </div>
 
-          <h5 class="form-subheading">MEASUREMENTS (INCHES)</h5>
+        <form id="stitching-form" class="mt-5">
+          <!-- Hidden Inputs for Sync -->
+          <input type="hidden" id="stitch-garment" value="Designer Blouse" />
+          <input type="hidden" id="stitch-fabric" value="Pure Chanderi Silk Zari Booti" />
+
+          <h5 class="form-subheading">3. BODY MEASUREMENTS (INCHES)</h5>
           <div class="measurements-grid">
             <div class="form-group">
               <label for="m-bust">Bust</label>
@@ -1447,30 +1473,31 @@
               <input type="number" id="m-length" step="0.5" placeholder="14.5" value="14.5" required />
             </div>
             <div class="form-group">
-              <label for="m-front-neck">Front Neck Depth</label>
+              <label for="m-front-neck">Front Neck</label>
               <input type="number" id="m-front-neck" step="0.5" placeholder="7" value="7" required />
             </div>
           </div>
 
-          <div class="form-group mt-4">
-            <label for="m-notes">Design Notes &amp; Neckline Style</label>
-            <textarea id="m-notes" rows="2" placeholder="e.g. Deep U-back with potli buttons, elbow length sleeve with gold zari border"></textarea>
+          <div class="form-group mt-3">
+            <label for="m-notes">Design Notes &amp; Neckline Customization</label>
+            <input type="text" id="m-notes" placeholder="e.g. Deep U-back with potli buttons, elbow length sleeve with gold zari border" />
           </div>
 
-          <div class="form-row-2 mt-4">
+          <div class="form-row-2 mt-3">
             <div class="form-group">
               <label for="stitch-client">Your Name *</label>
               <input type="text" id="stitch-client" required placeholder="e.g. Radhika Sharma" />
             </div>
             <div class="form-group">
-              <label for="stitch-phone">WhatsApp Phone *</label>
+              <label for="stitch-phone">WhatsApp Number *</label>
               <input type="tel" id="stitch-phone" required placeholder="+91 98765 43210" />
             </div>
           </div>
 
-          <div class="form-actions mt-6">
-            <button type="submit" class="btn btn-primary w-full">
-              SUBMIT BESPOKE CONSULTATION VIA WHATSAPP &rarr;
+          <div class="form-actions mt-5">
+            <button type="submit" class="btn btn-primary w-full btn-stitching-submit">
+              <span>SUBMIT BESPOKE CONSULTATION VIA WHATSAPP 💬</span>
+              <span>&rarr;</span>
             </button>
           </div>
         </form>
@@ -1478,61 +1505,85 @@
     </div>
   </div>
 
-  <!-- M. WhatsApp Order Confirmation Modal -->
-  <div class="modal-backdrop" id="checkout-modal-backdrop" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h3 class="modal-title">COMPLETE ORDER VIA WHATSAPP</h3>
+  <!-- M. WhatsApp Order Confirmation Modal (Compact Luxury Dialog) -->
+  <div class="modal-backdrop checkout-modal-backdrop" id="checkout-modal-backdrop" aria-hidden="true">
+    <div class="checkout-dialog" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+      <div class="modal-header checkout-header">
+        <div>
+          <span class="checkout-kicker">DIRECT ATELIER CHECKOUT</span>
+          <h3 class="modal-title checkout-title" id="checkout-title">Complete Order via WhatsApp</h3>
+        </div>
         <button type="button" class="close-modal-btn" id="close-checkout-btn" aria-label="Close dialog">&times;</button>
       </div>
 
-      <div class="modal-body">
-        <p class="modal-lead">
-          Please confirm your delivery details. We will compile your order into an official WhatsApp concierge message for immediate dispatch confirmation.
+      <!-- Live Order Snapshot Pill -->
+      <div class="checkout-summary-bar">
+        <div class="summary-pill">
+          <span class="pill-label">Ref:</span>
+          <strong id="summary-order-ref">LBV-ORDER</strong>
+        </div>
+        <div class="summary-pill">
+          <span class="pill-label">Ensembles:</span>
+          <strong id="summary-item-count">0 items</strong>
+        </div>
+        <div class="summary-pill summary-total-pill">
+          <span class="pill-label">Total:</span>
+          <strong id="summary-total-amt">&#8377;0</strong>
+        </div>
+      </div>
+
+      <div class="modal-body checkout-body">
+        <p class="modal-lead checkout-lead">
+          Please confirm your delivery details. We will immediately launch your order into WhatsApp for direct concierge verification and dispatch.
         </p>
 
-        <form id="order-request-form">
-          <div class="form-group">
-            <label for="cust-name">Full Name *</label>
-            <input type="text" id="cust-name" required placeholder="Your full name" />
+        <form id="order-request-form" class="checkout-form">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="cust-name">Full Name *</label>
+              <input type="text" id="cust-name" required placeholder="e.g. Radhika Sharma" />
+            </div>
+            <div class="form-group">
+              <label for="cust-phone">WhatsApp Number *</label>
+              <input type="tel" id="cust-phone" required placeholder="+91 98765 43210" />
+            </div>
           </div>
 
           <div class="form-row-2">
             <div class="form-group">
-              <label for="cust-phone">WhatsApp Mobile Number *</label>
-              <input type="tel" id="cust-phone" required placeholder="+91 98765 43210" />
+              <label for="cust-email">Email Address (Optional)</label>
+              <input type="email" id="cust-email" placeholder="radhika@example.com" />
             </div>
             <div class="form-group">
-              <label for="cust-email">Email Address (Optional)</label>
-              <input type="email" id="cust-email" placeholder="you@domain.com" />
+              <label for="cust-city">City *</label>
+              <input type="text" id="cust-city" required placeholder="e.g. Hyderabad / Dallas" />
             </div>
           </div>
 
           <div class="form-group">
             <label for="cust-address">Delivery Address *</label>
-            <textarea id="cust-address" rows="2" required placeholder="Apartment / Villa, Street, Landmark"></textarea>
+            <input type="text" id="cust-address" required placeholder="Flat / Villa, Landmark, Street" />
           </div>
 
           <div class="form-row-2">
             <div class="form-group">
-              <label for="cust-city">City *</label>
-              <input type="text" id="cust-city" required placeholder="e.g. Hyderabad / Dallas" />
+              <label for="cust-state">State &amp; Country *</label>
+              <input type="text" id="cust-state" required placeholder="e.g. Telangana, India / USA" />
             </div>
             <div class="form-group">
-              <label for="cust-state">State &amp; Country *</label>
-              <input type="text" id="cust-state" required placeholder="e.g. Telangana, India" />
+              <label for="cust-notes">Design Notes / Sizing</label>
+              <input type="text" id="cust-notes" placeholder="e.g. Custom sleeves, urgent delivery" />
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="cust-notes">Order Notes / Custom Requests</label>
-            <textarea id="cust-notes" rows="2" placeholder="Custom sleeve length, specific festival delivery date, etc."></textarea>
-          </div>
-
-          <div class="form-actions mt-6">
-            <button type="submit" class="btn btn-primary w-full">
-              CONFIRM &amp; LAUNCH WHATSAPP CONCIERGE &rarr;
+          <div class="checkout-actions">
+            <button type="submit" class="btn btn-primary w-full btn-checkout-submit" id="btn-confirm-checkout">
+              <span>SEND ORDER VIA WHATSAPP 💬</span>
+              <span>&rarr;</span>
             </button>
+            <p class="checkout-guarantee">
+              &#10003; Secure Concierge &bull; No upfront card payment required &bull; Direct confirmation
+            </p>
           </div>
         </form>
       </div>
@@ -1637,6 +1688,6 @@
   </div>
 
   <!-- Defer non-critical execution to maintain 100 First Contentful Paint -->
-  <script src="script.js?v=2.2" defer></script>
+  <script src="script.js?v=2.3" defer></script>
 </body>
 </html>
