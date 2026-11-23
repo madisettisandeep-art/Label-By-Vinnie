@@ -1235,8 +1235,8 @@
 
   <!-- K. Interactive Product Selection Modal (Size, Color, Custom Stitching, Add to Bag) -->
   <div class="modal-backdrop" id="product-detail-modal-backdrop" aria-hidden="true">
-    <div class="product-modal-dialog">
-      <button type="button" class="modal-close-btn" id="close-product-modal-btn" aria-label="Close dialog">&times;</button>
+    <div class="product-modal-dialog product-modal-panel">
+      <button type="button" class="modal-close-btn close-btn" id="close-product-modal-btn" aria-label="Close dialog">&times;</button>
       
       <div class="product-modal-grid">
         <!-- Media Gallery -->
@@ -1260,19 +1260,19 @@
             Product artisanal details and description.
           </p>
 
-          <form id="product-options-form" onsubmit="event.preventDefault(); handleModalAddToBag();">
+          <form id="product-options-form" onsubmit="event.preventDefault(); addToBagFromModal();">
             <!-- 1. Size Selection -->
             <div class="modal-option-group">
               <label class="modal-option-label">
                 <span>Select Size:</span>
                 <span class="selected-val-badge" id="selected-size-label">M</span>
               </label>
-              <div class="modal-sizes-selector" id="modal-sizes-selector">
-                <!-- Populated dynamically -->
+              <div class="modal-sizes-selector sizes-pills-row" id="modal-sizes-selector">
+                <!-- Populated dynamically via openProductModal -->
               </div>
             </div>
 
-            <!-- Custom Stitching Accordion Measurements (shown when Custom Stitching is selected) -->
+            <!-- Custom Stitching Accordion Measurements (shown when Custom Stitching / Custom Fit is selected) -->
             <div class="modal-custom-measurements-panel" id="modal-custom-measurements-panel" style="display: none;">
               <div class="custom-panel-header">
                 <strong>Custom Stitching to Measure</strong>
@@ -1302,14 +1302,45 @@
             <div class="modal-option-group">
               <label class="modal-option-label">
                 <span>Select Palette / Finish:</span>
-                <span class="selected-val-badge" id="selected-color-label">Original Shade</span>
+                <span class="selected-val-badge" id="selected-color-label">Original Artisanal Shade</span>
               </label>
-              <div class="modal-colors-selector" id="modal-colors-selector">
-                <!-- Populated dynamically -->
+              <div class="modal-colors-selector color-swatches-grid" id="modal-colors-selector">
+                <!-- Populated dynamically via openProductModal -->
               </div>
             </div>
 
-            <!-- 3. Quantity Selector -->
+            <!-- 3. Tailoring Choice Selection -->
+            <div class="modal-option-group">
+              <label class="modal-option-label">Tailoring Option:</label>
+              <div class="stitching-choices-grid">
+                <label class="stitching-choice-card active" data-stitching="standard">
+                  <input type="radio" name="modal-stitching-type" value="standard" checked />
+                  <div class="stitching-choice-content">
+                    <div class="stitching-choice-title">Standard Semi-Stitched</div>
+                    <div class="stitching-choice-desc">Authentic boutique pattern tailoring included in price</div>
+                  </div>
+                  <span class="stitching-choice-price">Included</span>
+                </label>
+                <label class="stitching-choice-card" data-stitching="bespoke">
+                  <input type="radio" name="modal-stitching-type" value="bespoke" />
+                  <div class="stitching-choice-content">
+                    <div class="stitching-choice-title">Bespoke Custom Stitching</div>
+                    <div class="stitching-choice-desc">Tailored to exact body measurements (+₹800)</div>
+                  </div>
+                  <span class="stitching-choice-price">+₹800</span>
+                </label>
+                <label class="stitching-choice-card" data-stitching="unstitched">
+                  <input type="radio" name="modal-stitching-type" value="unstitched" />
+                  <div class="stitching-choice-content">
+                    <div class="stitching-choice-title">Unstitched Pure Fabric Set</div>
+                    <div class="stitching-choice-desc">Raw premium fabric with border &amp; lining (-₹500)</div>
+                  </div>
+                  <span class="stitching-choice-price">-₹500</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 4. Quantity Selector -->
             <div class="modal-option-group">
               <label class="modal-option-label">Quantity:</label>
               <div class="modal-qty-control">
@@ -1319,7 +1350,7 @@
               </div>
             </div>
 
-            <!-- 4. Action Buttons -->
+            <!-- 5. Action Buttons -->
             <div class="modal-actions-row">
               <button type="submit" class="btn btn-primary btn-modal-add" id="modal-add-to-bag-btn">
                 <span>ADD TO BAG &bull; </span>
