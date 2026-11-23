@@ -187,7 +187,7 @@ const html = `<!DOCTYPE html>
           <span class="welcome-top-tag">UNLIMITED FASHION CHOICES</span>
           <h1 class="welcome-grand-heading">Welcome to the World Of<br /><span class="brand-glow">Label By Vinnie</span></h1>
           <p class="welcome-sub">Authentic Banarasi Chanderi &bull; Handloom Bandhani &bull; Bespoke Tailoring</p>
-          <a href="#shop" class="btn-welcome-explore">EXPLORE OUR COLLECTIONS &darr;</a>
+          <a href="#shop" class="btn-welcome-explore">BEST SELLERS &darr;</a>
         </div>
 
         <!-- Thin Vertical Scroll Progress Line (Right Side) -->
@@ -202,7 +202,7 @@ const html = `<!DOCTYPE html>
   <section id="collections" class="section-py bg-soft-ivory">
     <div class="site-container">
       <div class="section-header text-center">
-        <h2 class="section-title">Explore our collections</h2>
+        <h2 class="section-title">Best Sellers</h2>
         <div class="title-divider"></div>
       </div>
     </div>

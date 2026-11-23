@@ -14,7 +14,7 @@ export function CollectionsSection() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         <div className="text-center max-w-xl mx-auto mb-8">
           <h2 className="font-serif text-3xl sm:text-4xl text-espresso font-normal mb-3">
-            EXPLORE OUR COLLECTIONS
+            BEST SELLERS
           </h2>
           <div className="w-16 h-[2px] bg-champagne-gold mx-auto" />
         </div>
