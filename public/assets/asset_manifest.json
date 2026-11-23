@@ -1,0 +1,127 @@
+[
+  {
+    "src": "01_a_beautiful_bandhani_a_line_ku_DfWb-hVttke.jpg",
+    "dest": "products/bandhani-aline-kurta-dupatta.jpg",
+    "category": "Ethnic Wear"
+  },
+  {
+    "src": "02_wrapped_in_tradition_styled_wi_DdYUOM_N9YX.jpg",
+    "dest": "collections/ethnic-bandhani-dress.jpg",
+    "category": "Ethnic Wear"
+  },
+  {
+    "src": "03_a_quiet_glow_of_bhandini_woven_DTzLQgDiZ0B.jpg",
+    "dest": "products/pista-green-bandhani-3piece-set.jpg",
+    "category": "Ethnic Wear"
+  },
+  {
+    "src": "04_blouse_customisation_available_Df6R-HFtvFo.jpg",
+    "dest": "stitching/blouse-customisation-poster.jpg",
+    "category": "Custom Stitching"
+  },
+  {
+    "src": "05_a_beautiful_navy_blue_designer_DfohqqltYqh.jpg",
+    "dest": "stitching/navy-blue-zari-border-blouse.jpg",
+    "category": "Custom Stitching"
+  },
+  {
+    "src": "06_label_by_vinnie_fav_picks_DfkIEygNh2_.jpg",
+    "dest": "collections/fav-picks-pearl-embroidery.jpg",
+    "category": "Couture"
+  },
+  {
+    "src": "07_elegance_in_every_detail_DfXfzskzB_j.jpg",
+    "dest": "stitching/ivory-cutwork-designer-blouse.jpg",
+    "category": "Custom Stitching"
+  },
+  {
+    "src": "08_chanderi_zari_booti_top_slide_1_DfEt7sYlL8d.jpg",
+    "dest": "products/chanderi-zari-booti-set-main.jpg",
+    "category": "Ethnic Wear"
+  },
+  {
+    "src": "08_chanderi_zari_booti_top_slide_2_DfEt7sYlL8d.jpg",
+    "dest": "fabrics/chanderi-zari-weave-texture.jpg",
+    "category": "Fabric References"
+  },
+  {
+    "src": "08_chanderi_zari_booti_top_slide_3_DfEt7sYlL8d.jpg",
+    "dest": "fabrics/chanderi-booti-border-detail.jpg",
+    "category": "Fabric References"
+  },
+  {
+    "src": "08_chanderi_zari_booti_top_slide_4_DfEt7sYlL8d.jpg",
+    "dest": "products/chanderi-zari-dupatta-drape.jpg",
+    "category": "Ethnic Wear"
+  },
+  {
+    "src": "08_chanderi_zari_booti_top_slide_5_DfEt7sYlL8d.jpg",
+    "dest": "products/chanderi-zari-color-variant.jpg",
+    "category": "Ethnic Wear"
+  },
+  {
+    "src": "09_chanderi_zari_booti_top_DfEtSH3NdhZ.jpg",
+    "dest": "collections/chanderi-collection-poster.jpg",
+    "category": "Collections"
+  },
+  {
+    "src": "10_exclusive_banarasi_chanderi_co_slide_1_DdsvCU9lICf.jpg",
+    "dest": "products/banarasi-chanderi-pink-set-main.jpg",
+    "category": "Ethnic Wear"
+  },
+  {
+    "src": "10_exclusive_banarasi_chanderi_co_slide_2_DdsvCU9lICf.jpg",
+    "dest": "fabrics/banarasi-hand-mirror-work-detail.jpg",
+    "category": "Fabric References"
+  },
+  {
+    "src": "10_exclusive_banarasi_chanderi_co_slide_3_DdsvCU9lICf.jpg",
+    "dest": "fabrics/banarasi-sona-rupa-stripes-dupatta.jpg",
+    "category": "Fabric References"
+  },
+  {
+    "src": "10_exclusive_banarasi_chanderi_co_slide_4_DdsvCU9lICf.jpg",
+    "dest": "products/banarasi-chanderi-flatlay-ensemble.jpg",
+    "category": "Ethnic Wear"
+  },
+  {
+    "src": "11_exclusive_banarasi_chanderi_co_DdsugmFtGR5.jpg",
+    "dest": "collections/banarasi-chanderi-reel-poster.jpg",
+    "category": "Collections"
+  },
+  {
+    "src": "12_where_tradition_meets_contempo_DdBXuWGt0R3.jpg",
+    "dest": "collections/kolam-contemporary-fusion-ensemble.jpg",
+    "category": "Contemporary Fashion"
+  },
+  {
+    "src": "highlight_cover_packing.jpg",
+    "dest": "brand/highlight-cover-packing.jpg",
+    "category": "Boutique & Packaging"
+  },
+  {
+    "src": "highlight_cover_client_feed.jpg",
+    "dest": "brand/highlight-cover-client-feed.jpg",
+    "category": "Client Stories"
+  },
+  {
+    "src": "highlight_cover_cilent.jpg",
+    "dest": "brand/highlight-cover-client.jpg",
+    "category": "Client Stories"
+  },
+  {
+    "src": "highlight_cover_collobs.jpg",
+    "dest": "brand/highlight-cover-collobs.jpg",
+    "category": "Brand Collaborations"
+  },
+  {
+    "src": "highlight_cover_zarikotalehanga.jpg",
+    "dest": "brand/highlight-cover-zarikotalehanga.jpg",
+    "category": "Couture"
+  },
+  {
+    "src": "highlight_cover_mens_session.jpg",
+    "dest": "brand/highlight-cover-mens-session.jpg",
+    "category": "Boutique Sessions"
+  }
+]

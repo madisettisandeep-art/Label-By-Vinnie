@@ -1,0 +1,1436 @@
+const fs = require('fs');
+
+const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LABEL BY VINNIE | Unlimited Fashion Choices</title>
+  <meta name="description" content="Discover elegant ethnic wear, western fashion, contemporary styles and customised outfits at LABEL BY VINNIE. Handcrafted luxury shipped across India & USA." />
+  <meta name="theme-color" content="#15110d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="LABEL BY VINNIE | Unlimited Fashion Choices" />
+  <meta property="og:description" content="Handcrafted Banarasi Chanderi, Bandhani, bespoke designer blouses and luxury couture." />
+  <meta property="og:image" content="/assets/brand/logo.jpg" />
+  <link rel="icon" type="image/jpeg" href="/assets/brand/logo.jpg" />
+
+  <!-- Resource Hints (DNS Prefetch & Preconnect for Fast Asset Delivery) -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="https://wa.me" />
+  <link rel="dns-prefetch" href="https://www.instagram.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-warm-ivory text-espresso">
+
+  <!-- A. Phase 4: Brand Introduction Overlay (Max 2s / Skippable on scroll) -->
+  <div id="intro-screen" class="intro-screen" aria-hidden="true">
+    <div class="intro-content">
+      <div class="intro-logo-ring">
+        <img src="/assets/brand/logo.jpg" alt="Label By Vinnie Logo" class="intro-logo-img" />
+        <div class="intro-shimmer"></div>
+      </div>
+      <h2 class="intro-brand-title">LABEL BY VINNIE</h2>
+      <p class="intro-tagline">Unlimited Fashion Choices</p>
+    </div>
+  </div>
+
+  <!-- B. Phase 9: Fixed Luxury Header -->
+  <header id="main-header" class="main-header transparent">
+    <div class="header-container">
+      <a href="#hero" class="brand-lockup" aria-label="Label By Vinnie" title="Label By Vinnie">
+        <img src="/assets/brand/logo.jpg" alt="Label By Vinnie Logo" class="header-logo-badge" />
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="#hero" class="nav-link active">Home</a>
+        
+        <!-- Shop By Collection with Interactive Dropdown (Reference Design) -->
+        <div class="nav-dropdown-item" id="nav-collections-dropdown">
+          <button type="button" class="nav-link nav-dropdown-trigger" id="shop-by-collection-btn" aria-haspopup="true" aria-expanded="false">
+            Shop By Collection
+            <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          
+          <div class="nav-dropdown-menu" id="collections-dropdown-menu" role="menu">
+            <div class="dropdown-menu-header">SELECT COLLECTION</div>
+            <a href="#shop" class="dropdown-item" data-category="all" role="menuitem">
+              <span class="dropdown-item-title">All Collections</span>
+              <span class="dropdown-item-badge">Explore All</span>
+            </a>
+            <a href="#shop" class="dropdown-item" data-category="blouses" role="menuitem">
+              <span class="dropdown-item-title">Blouses</span>
+              <span class="dropdown-item-badge">Designer Atelier</span>
+            </a>
+            <a href="#shop" class="dropdown-item" data-category="ethnic" role="menuitem">
+              <span class="dropdown-item-title">Ethnic Wear</span>
+              <span class="dropdown-item-badge">Heritage Bandhani</span>
+            </a>
+            <a href="#shop" class="dropdown-item" data-category="chanderi" role="menuitem">
+              <span class="dropdown-item-title">Banarasi &amp; Chanderi</span>
+              <span class="dropdown-item-badge">Golden Zari</span>
+            </a>
+            <a href="#shop" class="dropdown-item" data-category="coords" role="menuitem">
+              <span class="dropdown-item-title">Co-ord Sets</span>
+              <span class="dropdown-item-badge">3-Piece Ensembles</span>
+            </a>
+            <a href="#shop" class="dropdown-item" data-category="western" role="menuitem">
+              <span class="dropdown-item-title">Western &amp; Fusion</span>
+              <span class="dropdown-item-badge">Modern Drapes</span>
+            </a>
+            <a href="#shop" class="dropdown-item" data-category="dupattas" role="menuitem">
+              <span class="dropdown-item-title">Dupattas</span>
+              <span class="dropdown-item-badge">Woven Zari Work</span>
+            </a>
+            <a href="#shop" class="dropdown-item" data-category="custom" role="menuitem">
+              <span class="dropdown-item-title">Custom Stitching</span>
+              <span class="dropdown-item-badge">Made to Measure</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="#custom-stitching" class="nav-link">Custom Stitching</a>
+        <a href="#story" class="nav-link">Our Story</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Direct Instagram Profile Link -->
+        <a href="https://www.instagram.com/label_by_vinnie/" target="_blank" rel="noopener noreferrer" class="nav-insta-icon-btn" title="Follow @label_by_vinnie on Instagram" aria-label="Label By Vinnie Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+
+        <!-- Cart Button -->
+        <button type="button" class="action-btn cart-btn" id="cart-btn" aria-label="Shopping Bag">
+          <svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cart-count">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" class="mobile-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-drawer-content">
+      <a href="#hero" class="mobile-nav-link">Home</a>
+      
+      <!-- Mobile Collapsible Shop By Collection -->
+      <div class="mobile-nav-collapsible">
+        <button type="button" class="mobile-nav-link flex justify-between items-center w-full" id="drawer-coll-toggle">
+          <span>Shop By Collection</span>
+          <span class="text-xs">&darr;</span>
+        </button>
+        <div class="mobile-coll-subitems" id="mobile-coll-subitems">
+          <a href="#shop" class="mobile-sub-link" data-category="all">All Collections</a>
+          <a href="#shop" class="mobile-sub-link" data-category="blouses">Blouses</a>
+          <a href="#shop" class="mobile-sub-link" data-category="ethnic">Ethnic Wear</a>
+          <a href="#shop" class="mobile-sub-link" data-category="chanderi">Banarasi &amp; Chanderi</a>
+          <a href="#shop" class="mobile-sub-link" data-category="coords">Co-ord Sets</a>
+          <a href="#shop" class="mobile-sub-link" data-category="western">Western &amp; Fusion</a>
+          <a href="#shop" class="mobile-sub-link" data-category="custom">Custom Stitching</a>
+        </div>
+      </div>
+
+      <a href="#custom-stitching" class="mobile-nav-link">Custom Stitching</a>
+      <a href="#story" class="mobile-nav-link">Our Story</a>
+      <a href="#contact" class="mobile-nav-link">Contact</a>
+    </div>
+  </div>
+
+  <!-- C. Phase 2 & 5: Cinematic Hero Section with Controlled Scrubbing Video -->
+  <section id="hero" class="hero-scroll-section">
+    <!-- Pinned 1200vh Scroll Track -->
+    <div class="hero-track" id="hero-track">
+      <div class="hero-sticky-stage">
+        <!-- 30-Second Cinematic Hero Video -->
+        <video
+          id="hero-fashion-video"
+          src="/videos/06_1200vh_couture_fashion_video.mp4"
+          poster="/assets/collections/kolam-contemporary-fusion-ensemble.jpg"
+          muted
+          playsinline
+          preload="auto"
+          class="hero-video-frame"
+          aria-label="Label by Vinnie Fashion Video"
+        ></video>
+
+        <!-- Brand Watermark Logo Badge (Covering Google Flow mark throughout Hero) -->
+        <div class="hero-watermark-overlay" id="hero-watermark-overlay" aria-hidden="true">
+          <img src="/assets/brand/logo.jpg" alt="Label By Vinnie Logo" class="hero-watermark-logo-img" />
+          <span class="hero-watermark-text">LABEL BY VINNIE</span>
+        </div>
+
+        <!-- End of Scroll Grand Welcome Title -->
+        <div class="hero-welcome-overlay" id="hero-welcome-overlay">
+          <span class="welcome-top-tag">UNLIMITED FASHION CHOICES</span>
+          <h1 class="welcome-grand-heading">Welcome to the World Of<br /><span class="brand-glow">Label By Vinnie</span></h1>
+          <p class="welcome-sub">Authentic Banarasi Chanderi &bull; Handloom Bandhani &bull; Bespoke Tailoring</p>
+          <a href="#shop" class="btn-welcome-explore">EXPLORE OUR COLLECTIONS &darr;</a>
+        </div>
+
+        <!-- Thin Vertical Scroll Progress Line (Right Side) -->
+        <div class="hero-timeline-track" aria-hidden="true">
+          <div class="hero-timeline-progress" id="hero-timeline-progress"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- D. Phase 10: Section 1 — Four Signature Collections (Animated Infinite Ribbon) -->
+  <section id="collections" class="section-py bg-soft-ivory">
+    <div class="site-container">
+      <div class="section-header text-center">
+        <h2 class="section-title">Explore our collections</h2>
+        <div class="title-divider"></div>
+      </div>
+    </div>
+
+    <!-- Full-Width Infinite Scrolling Collections Ribbon (Right to Left) -->
+    <div class="collections-marquee-container" id="collections-marquee-container" aria-label="Collections Showcase">
+      <div class="collections-track" id="collections-track">
+        <!-- Collection Cards: Set 1 -->
+        <article class="collection-card" data-category="ethnic" data-title="Ethnic Elegance" title="Click to view Ethnic Elegance products">
+          <div class="collection-img-wrap">
+            <img src="/assets/collections/ethnic-bandhani-dress.jpg" alt="Ethnic Elegance Collection" loading="lazy" />
+            <div class="card-overlay">
+              <span class="collection-num">01</span>
+              <h3>ETHNIC ELEGANCE</h3>
+              <p>Lehengas, kurtis, salwar suits, and traditional handcrafted ensembles.</p>
+              <span class="collection-link">Explore Edition &rarr;</span>
+            </div>
+            <div class="collection-hover-pill">View Products &rarr;</div>
+          </div>
+        </article>
+
+        <article class="collection-card" data-category="western" data-title="Western Edition" title="Click to view Western Edition products">
+          <div class="collection-img-wrap">
+            <img src="/assets/collections/kolam-contemporary-fusion-ensemble.jpg" alt="Western Edition" loading="lazy" />
+            <div class="card-overlay">
+              <span class="collection-num">02</span>
+              <h3>WESTERN EDITION</h3>
+              <p>Designer evening silhouettes, contemporary dresses, and structured drapes.</p>
+              <span class="collection-link">Explore Edition &rarr;</span>
+            </div>
+            <div class="collection-hover-pill">View Products &rarr;</div>
+          </div>
+        </article>
+
+        <article class="collection-card" data-category="chanderi" data-title="Banarasi &amp; Chanderi" title="Click to view Banarasi &amp; Chanderi products">
+          <div class="collection-img-wrap">
+            <img src="/assets/collections/banarasi-chanderi-reel-poster.jpg" alt="Contemporary Style" loading="lazy" />
+            <div class="card-overlay">
+              <span class="collection-num">03</span>
+              <h3>BANARASI &amp; CHANDERI</h3>
+              <p>Authentic hand-woven zari booti suits and regal Banarasi silk dupattas.</p>
+              <span class="collection-link">Explore Edition &rarr;</span>
+            </div>
+            <div class="collection-hover-pill">View Products &rarr;</div>
+          </div>
+        </article>
+
+        <article class="collection-card" data-category="custom" data-title="Custom Couture" title="Click to view Custom Couture products">
+          <div class="collection-img-wrap">
+            <img src="/assets/collections/fav-picks-pearl-embroidery.jpg" alt="Custom Couture" loading="lazy" />
+            <div class="card-overlay">
+              <span class="collection-num">04</span>
+              <h3>CUSTOM COUTURE</h3>
+              <p>Personalized made-to-measure blouses, floral cutwork, and hand latkan ties.</p>
+              <span class="collection-link">Explore Edition &rarr;</span>
+            </div>
+            <div class="collection-hover-pill">View Products &rarr;</div>
+          </div>
+        </article>
+
+        <!-- Collection Cards: Set 2 (Seamless loop duplicate) -->
+        <article class="collection-card" data-category="ethnic" data-title="Ethnic Elegance" title="Click to view Ethnic Elegance products">
+          <div class="collection-img-wrap">
+            <img src="/assets/products/pista-green-bandhani-3piece-set.jpg" alt="Handloom Bandhani" loading="lazy" />
+            <div class="card-overlay">
+              <span class="collection-num">01</span>
+              <h3>ETHNIC ELEGANCE</h3>
+              <p>Lehengas, kurtis, salwar suits, and traditional handcrafted ensembles.</p>
+              <span class="collection-link">Explore Edition &rarr;</span>
+            </div>
+            <div class="collection-hover-pill">View Products &rarr;</div>
+          </div>
+        </article>
+
+        <article class="collection-card" data-category="custom" data-title="Custom Blouse Studio" title="Click to view Blouses">
+          <div class="collection-img-wrap">
+            <img src="/assets/stitching/navy-blue-zari-border-blouse.jpg" alt="Designer Blouse Studio" loading="lazy" />
+            <div class="card-overlay">
+              <span class="collection-num">02</span>
+              <h3>DESIGNER BLOUSE ATELIER</h3>
+              <p>Potli button sleeves, sweetheart necklines, and bespoke tailoring.</p>
+              <span class="collection-link">Explore Edition &rarr;</span>
+            </div>
+            <div class="collection-hover-pill">View Products &rarr;</div>
+          </div>
+        </article>
+
+        <article class="collection-card" data-category="chanderi" data-title="Zari Booti Suits" title="Click to view Zari Suits">
+          <div class="collection-img-wrap">
+            <img src="/assets/products/chanderi-zari-booti-suit-set.jpg" alt="Chanderi Zari Booti" loading="lazy" />
+            <div class="card-overlay">
+              <span class="collection-num">03</span>
+              <h3>ZARI BOOTI SUITS</h3>
+              <p>Fine olive green Chanderi with golden zari weave and matching dupatta.</p>
+              <span class="collection-link">Explore Edition &rarr;</span>
+            </div>
+            <div class="collection-hover-pill">View Products &rarr;</div>
+          </div>
+        </article>
+
+        <article class="collection-card" data-category="chanderi" data-title="Banarasi Mirror Work" title="Click to view Mirror Work Sets">
+          <div class="collection-img-wrap">
+            <img src="/assets/products/exclusive-banarasi-chanderi-mirror-set.jpg" alt="Banarasi Mirror Work" loading="lazy" />
+            <div class="card-overlay">
+              <span class="collection-num">04</span>
+              <h3>HAND MIRROR BOOTI</h3>
+              <p>Royal purple Chanderi with delicate hand mirror embroidery and gold pallu.</p>
+              <span class="collection-link">Explore Edition &rarr;</span>
+            </div>
+            <div class="collection-hover-pill">View Products &rarr;</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Cinema Scroll Strip (35mm Filmstrip Reel) -->
+  <section id="cinema-strip" class="cinema-strip-section" aria-label="Live Cinema Showcase">
+    <div class="cinema-strip-container">
+      <div class="cinema-strip-header text-center">
+        <h3 class="cinema-main-title">New Arrivals</h3>
+      </div>
+
+      <!-- 35mm Perforated Sprocket Filmstrip Track -->
+      <div class="cinema-film-viewport" id="cinema-film-viewport">
+        <div class="cinema-film-track" id="cinema-film-track">
+          <!-- Dynamically populated via renderCinemaStrip() in script.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- E. Phase 10 & 11: Section 2 — Featured Products Catalog (Real Assets) -->
+  <section id="shop" class="section-py bg-warm-ivory">
+    <div class="site-container">
+      <div class="shop-header-flex">
+        <div>
+          <h2 class="section-title">Shop by Collection</h2>
+        </div>
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">All Styles</button>
+          <button class="filter-tab" data-filter="ethnic">Ethnic Wear</button>
+          <button class="filter-tab" data-filter="western">Western &amp; Fusion</button>
+          <button class="filter-tab" data-filter="chanderi">Banarasi &amp; Chanderi</button>
+          <button class="filter-tab" data-filter="custom">Custom Stitching</button>
+        </div>
+      </div>
+
+      <!-- Active Filter Banner (Visible when filtered via dropdown or card) -->
+      <div class="active-collection-banner" id="active-collection-banner" style="display: none;">
+        <div class="active-banner-info">
+          <span class="banner-badge">FILTERED COLLECTION</span>
+          <span class="banner-collection-name" id="active-collection-name">Ethnic Elegance</span>
+          <span class="banner-count" id="active-collection-count">(2 pieces available)</span>
+        </div>
+        <button type="button" class="btn-clear-filter" id="clear-collection-filter-btn" title="View All Collections">
+          Show All Styles &times;
+        </button>
+      </div>
+
+      <!-- Real Verified Product Items Grid with Shimmer Skeleton Loaders -->
+      <div class="products-grid" id="products-container">
+        <!-- Loading Skeletons: Eliminates layout shifts (CLS) before data hydration -->
+        <div class="skeleton-card">
+          <div class="skeleton-media"></div>
+          <div class="skeleton-info">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line medium"></div>
+            <div class="skeleton-line full"></div>
+            <div class="skeleton-btn"></div>
+          </div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-media"></div>
+          <div class="skeleton-info">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line medium"></div>
+            <div class="skeleton-line full"></div>
+            <div class="skeleton-btn"></div>
+          </div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-media"></div>
+          <div class="skeleton-info">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line medium"></div>
+            <div class="skeleton-line full"></div>
+            <div class="skeleton-btn"></div>
+          </div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-media"></div>
+          <div class="skeleton-info">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line medium"></div>
+            <div class="skeleton-line full"></div>
+            <div class="skeleton-btn"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- F. Phase 15: Custom Stitching Studio -->
+  <section id="custom-stitching" class="section-py bg-soft-ivory">
+    <div class="site-container">
+      <div class="stitching-studio-layout">
+        <div class="stitching-intro">
+          <h2 class="section-title">CUSTOM STITCHING STUDIO</h2>
+          <p class="stitching-desc">
+            Experience our personal tailoring service. Select your preferred garment silhouette, fabric weave, neckline, and submit your bespoke measurements for a direct WhatsApp consultation with designer Vinnie.
+          </p>
+
+          <div class="stitching-highlights">
+            <div class="highlight-item">
+              <span class="highlight-icon">&#10003;</span>
+              <div>
+                <strong>Single Weave Artisanry:</strong> Authentic pure Chanderi, Bandhani, and Mal cotton fabrics.
+              </div>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">&#10003;</span>
+              <div>
+                <strong>Precision Tailoring:</strong> Hand-cut patterns, finished with pure cotton silk linings and French seams.
+              </div>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">&#10003;</span>
+              <div>
+                <strong>Global Delivery:</strong> Custom stitched and dispatched across India and to the USA.
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-launch-studio mt-8" id="open-stitching-modal">
+            LAUNCH CUSTOM MEASUREMENT STUDIO
+          </button>
+        </div>
+
+        <div class="stitching-preview">
+          <div class="studio-video-container" id="studio-video-container">
+            <div class="preview-videos-grid" id="preview-videos-grid">
+              
+              <!-- Video 1: Potli Sleeves -->
+              <div class="video-wrapper active" id="wrapper-video-1" data-video-index="1" title="Tap to toggle music">
+                <video
+                  id="studio-video-1"
+                  src="/videos/05_a_beautiful_navy_blue_designer_DfohqqltYqh.mp4"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload="metadata"
+                  class="studio-reel-video"
+                ></video>
+
+                <!-- Audio Mute/Unmute Icon Button -->
+                <button
+                  type="button"
+                  class="video-audio-btn is-muted"
+                  id="audio-btn-1"
+                  aria-label="Toggle Sound Video 1"
+                  title="Tap to unmute music"
+                >
+                  <svg class="audio-icon icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                  </svg>
+                  <svg class="audio-icon icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                  </svg>
+                  <span class="audio-label">Muted</span>
+                </button>
+
+                <!-- Floating Feedback Pill -->
+                <div class="audio-status-pill" id="status-pill-1">Muted 🔇</div>
+
+                <div class="video-badge">LOOK 1: POTLI SLEEVES</div>
+              </div>
+
+              <!-- Video 2: Sweetheart Neck -->
+              <div class="video-wrapper" id="wrapper-video-2" data-video-index="2" title="Tap to toggle music">
+                <video
+                  id="studio-video-2"
+                  src="/videos/07_elegance_in_every_detail_DfXfzskzB_j.mp4"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload="metadata"
+                  class="studio-reel-video"
+                ></video>
+                
+                <!-- Audio Mute/Unmute Icon Button -->
+                <button
+                  type="button"
+                  class="video-audio-btn is-muted"
+                  id="audio-btn-2"
+                  aria-label="Toggle Sound Video 2"
+                  title="Tap to unmute music"
+                >
+                  <svg class="audio-icon icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                  </svg>
+                  <svg class="audio-icon icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                  </svg>
+                  <span class="audio-label">Muted</span>
+                </button>
+
+                <!-- Floating Feedback Pill -->
+                <div class="audio-status-pill" id="status-pill-2">Muted 🔇</div>
+
+                <div class="video-badge">LOOK 2: SWEETHEART NECK</div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="preview-caption">
+            <h4 id="studio-reel-title" style="margin: 0 0 6px 0; font-family: var(--font-serif); font-size: 1.15rem; color: var(--color-deep-espresso);">Bespoke Navy Blue Designer Blouse</h4>
+            <p id="studio-reel-desc" style="margin: 0; font-size: 0.85rem; color: var(--color-muted-taupe); line-height: 1.5;">
+              Dual artisanal showcase: Potli sleeve detailing &amp; sweetheart neckline with handcrafted latkan ties. Tap the audio icon to listen with original music.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- G. Phase 10: Section 3 & 4 — Brand Story & Highlights -->
+  <section id="story" class="section-py bg-warm-ivory brand-story-section">
+    <div class="site-container">
+      <div class="story-grid">
+        <div class="story-image-composition">
+          <!-- Main Dress Slider Box (Confined with overflow: hidden) -->
+          <div class="story-slider-box" id="story-slider-box" aria-label="Label by Vinnie Couture Collection Showcase">
+            <div class="story-slider-track" id="story-slider-track">
+              <!-- Slide 1: Crimson Red Banarasi Chanderi -->
+              <div class="story-slide active">
+                <img src="/assets/fabrics/chanderi-zari-weave-texture.jpg" alt="Banarasi Chanderi Zari Suit - Crimson Red" loading="lazy" />
+                <div class="story-slide-badge">BANARASI CHANDERI • CRIMSON RED</div>
+              </div>
+              <!-- Slide 2: Red Bandhani Anarkali -->
+              <div class="story-slide">
+                <img src="/assets/story/01_red_bandhani_anarkali.jpg" alt="Handloom Bandhani Anarkali with Potli Detailing" loading="lazy" />
+                <div class="story-slide-badge">HANDLOOM BANDHANI • ANARKALI</div>
+              </div>
+              <!-- Slide 3: Pista Green Bandhani Peplum -->
+              <div class="story-slide">
+                <img src="/assets/story/02_pista_green_bandhani_set.jpg" alt="Pista Green Bandhani Peplum Ensemble" loading="lazy" />
+                <div class="story-slide-badge">BANDHANI SILK • PISTA GREEN</div>
+              </div>
+              <!-- Slide 4: Rani Pink Banarasi Chanderi -->
+              <div class="story-slide">
+                <img src="/assets/story/03_magenta_chanderi_zari_suit.jpg" alt="Banarasi Chanderi Zari Suit - Rani Pink" loading="lazy" />
+                <div class="story-slide-badge">BANARASI CHANDERI • RANI PINK</div>
+              </div>
+              <!-- Slide 5: Mehndi Green Banarasi Chanderi -->
+              <div class="story-slide">
+                <img src="/assets/story/04_mehndi_green_chanderi_zari_suit.jpg" alt="Banarasi Chanderi Zari Suit - Mehndi Green" loading="lazy" />
+                <div class="story-slide-badge">BANARASI CHANDERI • MEHNDI GREEN</div>
+              </div>
+              <!-- Slide 6: Rust Terracotta Banarasi Chanderi -->
+              <div class="story-slide">
+                <img src="/assets/story/05_rust_orange_chanderi_zari_suit.jpg" alt="Banarasi Chanderi Zari Suit - Rust Terracotta" loading="lazy" />
+                <div class="story-slide-badge">BANARASI CHANDERI • RUST ORANGE</div>
+              </div>
+              <!-- Slide 7: Royal Purple Banarasi Chanderi -->
+              <div class="story-slide">
+                <img src="/assets/story/06_royal_purple_chanderi_zari_suit.jpg" alt="Banarasi Chanderi Zari Suit - Royal Purple" loading="lazy" />
+                <div class="story-slide-badge">BANARASI CHANDERI • ROYAL PURPLE</div>
+              </div>
+            </div>
+
+            <!-- Slide Dots & Index Indicator -->
+            <div class="story-slider-controls">
+              <span class="story-slide-counter" id="story-slide-counter">01 / 07</span>
+              <div class="story-slider-dots" id="story-slider-dots">
+                <span class="slider-dot active" data-slide="0"></span>
+                <span class="slider-dot" data-slide="1"></span>
+                <span class="slider-dot" data-slide="2"></span>
+                <span class="slider-dot" data-slide="3"></span>
+                <span class="slider-dot" data-slide="4"></span>
+                <span class="slider-dot" data-slide="5"></span>
+                <span class="slider-dot" data-slide="6"></span>
+              </div>
+            </div>
+
+            <!-- Mini Progress Bar -->
+            <div class="story-slider-progress">
+              <div class="story-progress-bar" id="story-progress-bar"></div>
+            </div>
+          </div>
+
+          <!-- Inset Story Box with Official Logo -->
+          <img src="/assets/brand/logo.jpg" alt="Label By Vinnie Official Logo" class="story-img-sub story-logo-sub" loading="lazy" />
+        </div>
+
+        <div class="story-copy">
+          <span class="section-subtitle">THE ESSENCE</span>
+          <h2 class="section-title">THE STORY BEHIND EVERY STYLE</h2>
+          <p class="story-lead">
+            LABEL BY VINNIE celebrates individuality, creativity, and the enduring beauty of personal expression.
+          </p>
+          <p class="story-body">
+            Co-founded by Vinnie Vajinepalli, our studio bridges heritage Indian textiles—from the fine luster of Banarasi Chanderi to the intricate dots of traditional Bandhani—with modern, fluid tailoring.
+          </p>
+          <p class="story-body">
+            We believe that couture is not merely worn; it is lived. Every ensemble is created with premium fabrics, conscientious finishing, and dedicated personal attention for each client.
+          </p>
+
+          <div class="brand-pillars">
+            <div class="pillar">
+              <span class="pillar-num">01</span>
+              <h4>Curated Collections</h4>
+              <p>Thoughtfully presented styles for weddings, festivals, and everyday grace.</p>
+            </div>
+            <div class="pillar">
+              <span class="pillar-num">02</span>
+              <h4>Custom Stitching</h4>
+              <p>Tailored precisely to your silhouette, neckline, and sleeve preference.</p>
+            </div>
+            <div class="pillar">
+              <span class="pillar-num">03</span>
+              <h4>Personal Attention</h4>
+              <p>Direct styling and consultation through our WhatsApp boutique.</p>
+            </div>
+            <div class="pillar">
+              <span class="pillar-num">04</span>
+              <h4>Worldwide Shipping</h4>
+              <p>Carefully packed and delivered across India and the United States.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- H. Phase 10: Section 6 — Instagram & Client Community -->
+  <section class="section-py bg-soft-ivory social-reels-section">
+    <div class="site-container text-center">
+      <div class="social-follow-badge">
+        <svg class="insta-sub-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        <span class="insta-sub-text">@Follow Us On</span>
+      </div>
+      <h2 class="section-title">@LABEL_BY_VINNIE</h2>
+      <p class="max-w-md mx-auto mb-8 text-taupe">Follow our journey and discover real client ensembles on Instagram.</p>
+
+      <div class="instagram-reel-grid" id="social-reels-grid">
+        <!-- Reel 1: Bandhani A-Line Kurta -->
+        <div class="insta-tile-video-card" data-reel-index="1">
+          <video
+            class="social-reel-video"
+            src="/videos/01_a_beautiful_bandhani_a_line_ku_DfWb-hVttke.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
+
+          <div class="social-sound-control-group">
+            <div class="social-volume-panel" id="vol-panel-1">
+              <input type="range" min="0" max="1" step="0.05" value="0.8" class="social-volume-slider" aria-label="Volume Slider" />
+              <span class="social-volume-pct">80%</span>
+            </div>
+            <button type="button" class="social-audio-btn is-muted" aria-label="Toggle Audio & Volume" title="Tap for volume">
+              <svg class="audio-icon icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg class="audio-icon icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="social-audio-toast">Muted 🔇</div>
+
+          <a href="https://www.instagram.com/reel/DfWb-hVttke/" target="_blank" rel="noopener noreferrer" class="social-insta-overlay">
+            <div class="social-insta-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <span>OPEN ON INSTAGRAM &nearr;</span>
+            </div>
+            <span class="social-insta-caption">Bandhani A-Line Kurta</span>
+          </a>
+        </div>
+
+        <!-- Reel 2: Custom Sweetheart Navy Blouse -->
+        <div class="insta-tile-video-card" data-reel-index="2">
+          <video
+            class="social-reel-video"
+            src="/videos/07_elegance_in_every_detail_DfXfzskzB_j.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
+
+          <div class="social-sound-control-group">
+            <div class="social-volume-panel" id="vol-panel-2">
+              <input type="range" min="0" max="1" step="0.05" value="0.8" class="social-volume-slider" aria-label="Volume Slider" />
+              <span class="social-volume-pct">80%</span>
+            </div>
+            <button type="button" class="social-audio-btn is-muted" aria-label="Toggle Audio & Volume" title="Tap for volume">
+              <svg class="audio-icon icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg class="audio-icon icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="social-audio-toast">Muted 🔇</div>
+
+          <a href="https://www.instagram.com/reel/DfXfzskzB_j/" target="_blank" rel="noopener noreferrer" class="social-insta-overlay">
+            <div class="social-insta-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <span>OPEN ON INSTAGRAM &nearr;</span>
+            </div>
+            <span class="social-insta-caption">Designer Sweetheart Blouse</span>
+          </a>
+        </div>
+
+        <!-- Reel 3: Pista Green Bandhani Glow -->
+        <div class="insta-tile-video-card" data-reel-index="3">
+          <video
+            class="social-reel-video"
+            src="/videos/03_a_quiet_glow_of_bhandini_woven_DTzLQgDiZ0B.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
+
+          <div class="social-sound-control-group">
+            <div class="social-volume-panel" id="vol-panel-3">
+              <input type="range" min="0" max="1" step="0.05" value="0.8" class="social-volume-slider" aria-label="Volume Slider" />
+              <span class="social-volume-pct">80%</span>
+            </div>
+            <button type="button" class="social-audio-btn is-muted" aria-label="Toggle Audio & Volume" title="Tap for volume">
+              <svg class="audio-icon icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg class="audio-icon icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="social-audio-toast">Muted 🔇</div>
+
+          <a href="https://www.instagram.com/reel/DTzLQgDiZ0B/" target="_blank" rel="noopener noreferrer" class="social-insta-overlay">
+            <div class="social-insta-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <span>OPEN ON INSTAGRAM &nearr;</span>
+            </div>
+            <span class="social-insta-caption">Pista Green Bandhani Glow</span>
+          </a>
+        </div>
+
+        <!-- Reel 4: Wrapped in Tradition Bandhani -->
+        <div class="insta-tile-video-card" data-reel-index="4">
+          <video
+            class="social-reel-video"
+            src="/videos/02_wrapped_in_tradition_styled_wi_DdYUOM_N9YX.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
+
+          <div class="social-sound-control-group">
+            <div class="social-volume-panel" id="vol-panel-4">
+              <input type="range" min="0" max="1" step="0.05" value="0.8" class="social-volume-slider" aria-label="Volume Slider" />
+              <span class="social-volume-pct">80%</span>
+            </div>
+            <button type="button" class="social-audio-btn is-muted" aria-label="Toggle Audio & Volume" title="Tap for volume">
+              <svg class="audio-icon icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg class="audio-icon icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="social-audio-toast">Muted 🔇</div>
+
+          <a href="https://www.instagram.com/reel/DdYUOM_N9YX/" target="_blank" rel="noopener noreferrer" class="social-insta-overlay">
+            <div class="social-insta-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <span>OPEN ON INSTAGRAM &nearr;</span>
+            </div>
+            <span class="social-insta-caption">Wrapped in Tradition Bandhani</span>
+          </a>
+        </div>
+
+        <!-- Reel 5: Chanderi Zari Booti Top -->
+        <div class="insta-tile-video-card" data-reel-index="5">
+          <video
+            class="social-reel-video"
+            src="/videos/09_chanderi_zari_booti_top_DfEtSH3NdhZ.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
+
+          <div class="social-sound-control-group">
+            <div class="social-volume-panel" id="vol-panel-5">
+              <input type="range" min="0" max="1" step="0.05" value="0.8" class="social-volume-slider" aria-label="Volume Slider" />
+              <span class="social-volume-pct">80%</span>
+            </div>
+            <button type="button" class="social-audio-btn is-muted" aria-label="Toggle Audio & Volume" title="Tap for volume">
+              <svg class="audio-icon icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg class="audio-icon icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="social-audio-toast">Muted 🔇</div>
+
+          <a href="https://www.instagram.com/reel/DfEtSH3NdhZ/" target="_blank" rel="noopener noreferrer" class="social-insta-overlay">
+            <div class="social-insta-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <span>OPEN ON INSTAGRAM &nearr;</span>
+            </div>
+            <span class="social-insta-caption">Chanderi Zari Booti Suit</span>
+          </a>
+        </div>
+
+        <!-- Reel 6: Exclusive Banarasi Chanderi Co-ord -->
+        <div class="insta-tile-video-card" data-reel-index="6">
+          <video
+            class="social-reel-video"
+            src="/videos/11_exclusive_banarasi_chanderi_co_DdsugmFtGR5.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
+
+          <div class="social-sound-control-group">
+            <div class="social-volume-panel" id="vol-panel-6">
+              <input type="range" min="0" max="1" step="0.05" value="0.8" class="social-volume-slider" aria-label="Volume Slider" />
+              <span class="social-volume-pct">80%</span>
+            </div>
+            <button type="button" class="social-audio-btn is-muted" aria-label="Toggle Audio & Volume" title="Tap for volume">
+              <svg class="audio-icon icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg class="audio-icon icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="social-audio-toast">Muted 🔇</div>
+
+          <a href="https://www.instagram.com/reel/DdsugmFtGR5/" target="_blank" rel="noopener noreferrer" class="social-insta-overlay">
+            <div class="social-insta-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <span>OPEN ON INSTAGRAM &nearr;</span>
+            </div>
+            <span class="social-insta-caption">Banarasi Chanderi Mirror Set</span>
+          </a>
+        </div>
+
+        <!-- Reel 7: Where Tradition Meets Contemporary -->
+        <div class="insta-tile-video-card" data-reel-index="7">
+          <video
+            class="social-reel-video"
+            src="/videos/12_where_tradition_meets_contempo_DdBXuWGt0R3.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
+
+          <div class="social-sound-control-group">
+            <div class="social-volume-panel" id="vol-panel-7">
+              <input type="range" min="0" max="1" step="0.05" value="0.8" class="social-volume-slider" aria-label="Volume Slider" />
+              <span class="social-volume-pct">80%</span>
+            </div>
+            <button type="button" class="social-audio-btn is-muted" aria-label="Toggle Audio & Volume" title="Tap for volume">
+              <svg class="audio-icon icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg class="audio-icon icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="social-audio-toast">Muted 🔇</div>
+
+          <a href="https://www.instagram.com/reel/DdBXuWGt0R3/" target="_blank" rel="noopener noreferrer" class="social-insta-overlay">
+            <div class="social-insta-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <span>OPEN ON INSTAGRAM &nearr;</span>
+            </div>
+            <span class="social-insta-caption">Contemporary Silk Gown</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- I. Phase 16: Footer with Contact Information -->
+  <footer id="contact" class="site-footer">
+    <div class="site-container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <div class="footer-logo-lockup">
+            <img src="/assets/brand/logo.jpg" alt="Label By Vinnie" class="footer-logo" loading="lazy" />
+            <h3 class="footer-brand-name">LABEL BY VINNIE</h3>
+          </div>
+          <p class="footer-bio">
+            Bespoke women's ethnic contemporary wear, single-weave Chanderi, handcrafted Bandhani, and made-to-measure designer blouses. Shipped across India &amp; the United States.
+          </p>
+          <div class="footer-contact-highlight">
+            <span class="highlight-label">WHATSAPP ATELIER CONCIERGE</span>
+            <a href="https://wa.me/919989898765" target="_blank" rel="noopener noreferrer" class="concierge-link">+91 99898 98765</a>
+          </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-heading">ATELIER</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Home Showcase</a></li>
+            <li><a href="#collections">Signature Collections</a></li>
+            <li><a href="#shop">Boutique Shop</a></li>
+            <li><a href="#custom-stitching">Custom Stitching Studio</a></li>
+            <li><a href="#story">Our Craft &amp; Story</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-heading">CLIENT CARE</h4>
+          <ul class="footer-links">
+            <li><a href="https://wa.me/919989898765?text=Hello%20Label%20By%20Vinnie%2C%20I%20would%20like%20to%20place%20an%20order%20enquiry." target="_blank" rel="noopener">Order Enquiries</a></li>
+            <li><a href="https://wa.me/919989898765?text=Hello%20Label%20By%20Vinnie%2C%20I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener">WhatsApp Consultation</a></li>
+            <li><span>Worldwide Delivery: India &amp; USA</span></li>
+            <li><span>Custom Size Alterations</span></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-heading">CONTACT</h4>
+          <ul class="footer-links">
+            <li>
+              <strong>Direct WhatsApp:</strong><br />
+              <a href="https://wa.me/919989898765" target="_blank" rel="noopener" class="text-champagne-gold">+91 99898 98765</a>
+            </li>
+            <li class="mt-2">
+              <strong>Email Concierge:</strong><br />
+              <a href="mailto:atelier@labelbyvinnie.com" class="text-champagne-gold">atelier@labelbyvinnie.com</a>
+            </li>
+            <li class="mt-2">
+              <strong>Official Instagram:</strong><br />
+              <a href="https://www.instagram.com/label_by_vinnie/" target="_blank" rel="noopener" class="text-champagne-gold">@label_by_vinnie</a>
+            </li>
+            <li class="mt-2">
+              <strong>Atelier Location:</strong><br />
+              <span>Hyderabad, Telangana, India (Worldwide Dispatch)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <p class="copyright-text">&copy; 2026 LABEL BY VINNIE. All Rights Reserved. Co-founded by Vinnie Vajinepalli.</p>
+        <div class="footer-social-links">
+          <a href="https://www.instagram.com/label_by_vinnie/" target="_blank" rel="noopener" class="footer-social-link">Instagram @label_by_vinnie</a>
+          <span class="sep">&bull;</span>
+          <span>Handcrafted Luxury in India</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- J. Slide-Out Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" aria-hidden="true">
+    <div class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="drawer-header">
+        <h3 id="cart-title">YOUR SHOPPING BAG (<span id="cart-items-count">0</span>)</h3>
+        <button type="button" class="close-drawer-btn" id="close-drawer-btn" aria-label="Close bag">&times;</button>
+      </div>
+
+      <div class="cart-items-list" id="cart-items-list">
+        <!-- Rendered dynamically via script.js -->
+      </div>
+
+      <div class="drawer-footer">
+        <div class="cart-total-row">
+          <span>Subtotal</span>
+          <span class="cart-total-amount" id="cart-total-amount">&#8377;0</span>
+        </div>
+        <p class="cart-shipping-note">Shipping calculated during direct WhatsApp checkout confirmation.</p>
+        <button type="button" class="btn btn-primary w-full" id="proceed-to-checkout-btn">
+          PROCEED TO WHATSAPP CHECKOUT &rarr;
+        </button>
+        <button type="button" class="btn btn-secondary w-full mt-2" id="close-cart-btn">
+          CONTINUE BROWSING
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- K. Interactive Product Selection Modal (Size, Color, Custom Stitching, Add to Bag) -->
+  <div class="modal-backdrop" id="product-detail-modal-backdrop" aria-hidden="true">
+    <div class="product-modal-dialog">
+      <button type="button" class="modal-close-btn" id="close-product-modal-btn" aria-label="Close dialog">&times;</button>
+      
+      <div class="product-modal-grid">
+        <!-- Media Gallery -->
+        <div class="product-modal-media">
+          <div class="modal-image-wrapper">
+            <img id="modal-product-img" src="" alt="Product Detail" />
+            <span class="product-modal-badge" id="modal-product-badge">ETHNIC</span>
+          </div>
+        </div>
+
+        <!-- Options Form -->
+        <div class="product-modal-body">
+          <span class="modal-product-cat" id="modal-product-cat">Pure Handcraft</span>
+          <h2 class="modal-product-title" id="modal-product-title">Ensemble Title</h2>
+          <div class="modal-price-row">
+            <span class="modal-product-price" id="modal-product-price">&#8377;0</span>
+            <span class="modal-price-note" id="modal-price-note">All taxes included &bull; Handcrafted</span>
+          </div>
+
+          <p class="modal-product-desc" id="modal-product-desc">
+            Product artisanal details and description.
+          </p>
+
+          <form id="product-options-form" onsubmit="event.preventDefault(); handleModalAddToBag();">
+            <!-- 1. Size Selection -->
+            <div class="modal-option-group">
+              <label class="modal-option-label">
+                <span>Select Size:</span>
+                <span class="selected-val-badge" id="selected-size-label">M</span>
+              </label>
+              <div class="modal-sizes-selector" id="modal-sizes-selector">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Custom Stitching Accordion Measurements (shown when Custom Stitching is selected) -->
+            <div class="modal-custom-measurements-panel" id="modal-custom-measurements-panel" style="display: none;">
+              <div class="custom-panel-header">
+                <strong>Custom Stitching to Measure</strong>
+                <span>Enter your inches below</span>
+              </div>
+              <div class="measurements-grid compact">
+                <div class="form-group">
+                  <label for="m-bust">Bust (in)</label>
+                  <input type="number" id="m-bust" step="0.5" value="36" />
+                </div>
+                <div class="form-group">
+                  <label for="m-waist">Waist (in)</label>
+                  <input type="number" id="m-waist" step="0.5" value="30" />
+                </div>
+                <div class="form-group">
+                  <label for="m-hip">Hip (in)</label>
+                  <input type="number" id="m-hip" step="0.5" value="38" />
+                </div>
+                <div class="form-group">
+                  <label for="m-length">Length (in)</label>
+                  <input type="number" id="m-length" step="0.5" value="14.5" />
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Colour / Weave Selection -->
+            <div class="modal-option-group">
+              <label class="modal-option-label">
+                <span>Select Palette / Finish:</span>
+                <span class="selected-val-badge" id="selected-color-label">Original Shade</span>
+              </label>
+              <div class="modal-colors-selector" id="modal-colors-selector">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- 3. Quantity Selector -->
+            <div class="modal-option-group">
+              <label class="modal-option-label">Quantity:</label>
+              <div class="modal-qty-control">
+                <button type="button" class="btn-qty" id="modal-qty-minus" aria-label="Decrease quantity">&minus;</button>
+                <span class="modal-qty-val" id="modal-qty-display">1</span>
+                <button type="button" class="btn-qty" id="modal-qty-plus" aria-label="Increase quantity">&#43;</button>
+              </div>
+            </div>
+
+            <!-- 4. Action Buttons -->
+            <div class="modal-actions-row">
+              <button type="submit" class="btn btn-primary btn-modal-add" id="modal-add-to-bag-btn">
+                <span>ADD TO BAG &bull; </span>
+                <span id="modal-btn-price-display">&#8377;0</span>
+              </button>
+              <a href="#" target="_blank" rel="noopener" class="btn-modal-wa" id="modal-wa-direct-btn" title="Instant WhatsApp Styling Query">
+                <span>WhatsApp Query 💬</span>
+              </a>
+            </div>
+          </form>
+
+          <div class="modal-footer-notes">
+            <span>&#10003; 100% Authentic Handcraft</span>
+            <span>&#10003; Custom Stitching Available</span>
+            <span>&#10003; Worldwide Express Shipping</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- L. Bespoke Custom Measurements Modal Studio -->
+  <div class="modal-backdrop" id="stitching-modal-backdrop" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">BESPOKE MEASUREMENT STUDIO</h3>
+        <button type="button" class="close-modal-btn" id="close-stitching-btn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-lead">
+          Submit your measurements for custom tailored designer blouses, lehenga cholis, and kurta sets. Designer Vinnie personally verifies patterns before cutting.
+        </p>
+
+        <form id="stitching-form">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="stitch-garment">Garment Type *</label>
+              <select id="stitch-garment" required>
+                <option value="Designer Blouse">Designer Blouse</option>
+                <option value="Anarkali Suit">Anarkali Suit</option>
+                <option value="Kurta &amp; Palazzo Set">Kurta &amp; Palazzo Set</option>
+                <option value="Lehenga Choli">Lehenga Choli</option>
+                <option value="Western Contemporary Dress">Western Contemporary Dress</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="stitch-fabric">Fabric Selection *</label>
+              <select id="stitch-fabric" required>
+                <option value="Pure Chanderi Silk">Pure Chanderi Silk</option>
+                <option value="Handloom Bandhani Silk">Handloom Bandhani Silk</option>
+                <option value="Heavy Silk Blend with Zari">Heavy Silk Blend with Zari</option>
+                <option value="Mulmul Cotton">Breathable Mulmul Cotton</option>
+                <option value="Client Supplied Fabric">Client Supplied Fabric</option>
+              </select>
+            </div>
+          </div>
+
+          <h5 class="form-subheading">MEASUREMENTS (INCHES)</h5>
+          <div class="measurements-grid">
+            <div class="form-group">
+              <label for="m-bust">Bust</label>
+              <input type="number" id="m-bust" step="0.5" placeholder="36" value="36" required />
+            </div>
+            <div class="form-group">
+              <label for="m-waist">Waist</label>
+              <input type="number" id="m-waist" step="0.5" placeholder="30" value="30" required />
+            </div>
+            <div class="form-group">
+              <label for="m-hip">Hip</label>
+              <input type="number" id="m-hip" step="0.5" placeholder="38" value="38" required />
+            </div>
+            <div class="form-group">
+              <label for="m-shoulder">Shoulder</label>
+              <input type="number" id="m-shoulder" step="0.5" placeholder="14" value="14" required />
+            </div>
+            <div class="form-group">
+              <label for="m-armhole">Armhole</label>
+              <input type="number" id="m-armhole" step="0.5" placeholder="16" value="16" required />
+            </div>
+            <div class="form-group">
+              <label for="m-sleeve">Sleeve Length</label>
+              <input type="number" id="m-sleeve" step="0.5" placeholder="10.5" value="10.5" required />
+            </div>
+            <div class="form-group">
+              <label for="m-length">Garment Length</label>
+              <input type="number" id="m-length" step="0.5" placeholder="14.5" value="14.5" required />
+            </div>
+            <div class="form-group">
+              <label for="m-front-neck">Front Neck Depth</label>
+              <input type="number" id="m-front-neck" step="0.5" placeholder="7" value="7" required />
+            </div>
+          </div>
+
+          <div class="form-group mt-4">
+            <label for="m-notes">Design Notes &amp; Neckline Style</label>
+            <textarea id="m-notes" rows="2" placeholder="e.g. Deep U-back with potli buttons, elbow length sleeve with gold zari border"></textarea>
+          </div>
+
+          <div class="form-row-2 mt-4">
+            <div class="form-group">
+              <label for="stitch-client">Your Name *</label>
+              <input type="text" id="stitch-client" required placeholder="e.g. Radhika Sharma" />
+            </div>
+            <div class="form-group">
+              <label for="stitch-phone">WhatsApp Phone *</label>
+              <input type="tel" id="stitch-phone" required placeholder="+91 98765 43210" />
+            </div>
+          </div>
+
+          <div class="form-actions mt-6">
+            <button type="submit" class="btn btn-primary w-full">
+              SUBMIT BESPOKE CONSULTATION VIA WHATSAPP &rarr;
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- M. WhatsApp Order Confirmation Modal -->
+  <div class="modal-backdrop" id="checkout-modal-backdrop" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">COMPLETE ORDER VIA WHATSAPP</h3>
+        <button type="button" class="close-modal-btn" id="close-checkout-btn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-lead">
+          Please confirm your delivery details. We will compile your order into an official WhatsApp concierge message for immediate dispatch confirmation.
+        </p>
+
+        <form id="order-request-form">
+          <div class="form-group">
+            <label for="cust-name">Full Name *</label>
+            <input type="text" id="cust-name" required placeholder="Your full name" />
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="cust-phone">WhatsApp Mobile Number *</label>
+              <input type="tel" id="cust-phone" required placeholder="+91 98765 43210" />
+            </div>
+            <div class="form-group">
+              <label for="cust-email">Email Address (Optional)</label>
+              <input type="email" id="cust-email" placeholder="you@domain.com" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cust-address">Delivery Address *</label>
+            <textarea id="cust-address" rows="2" required placeholder="Apartment / Villa, Street, Landmark"></textarea>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="cust-city">City *</label>
+              <input type="text" id="cust-city" required placeholder="e.g. Hyderabad / Dallas" />
+            </div>
+            <div class="form-group">
+              <label for="cust-state">State &amp; Country *</label>
+              <input type="text" id="cust-state" required placeholder="e.g. Telangana, India" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cust-notes">Order Notes / Custom Requests</label>
+            <textarea id="cust-notes" rows="2" placeholder="Custom sleeve length, specific festival delivery date, etc."></textarea>
+          </div>
+
+          <div class="form-actions mt-6">
+            <button type="submit" class="btn btn-primary w-full">
+              CONFIRM &amp; LAUNCH WHATSAPP CONCIERGE &rarr;
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- N. Boutique Authorized Management Modal (Protected Cinema & Stock Manager) -->
+  <div class="modal-backdrop" id="admin-modal-backdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">BOUTIQUE MANAGEMENT &bull; AUTHORIZED</h3>
+        <button type="button" class="close-modal-btn" id="close-admin-btn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Admin Cinema Reel Manager Tab -->
+        <div class="admin-tab-content">
+          <div class="admin-cinema-manager-box">
+            <h4 class="cinema-admin-title">Manage 35mm Live Cinema Strip Photos</h4>
+            <p class="cinema-admin-lead">
+              Upload new arrival photographs, specify garment titles, prices, and publish them directly to the continuous live filmstrip on the homepage.
+            </p>
+
+            <form id="admin-cinema-form" class="admin-cinema-form">
+              <div class="form-row-2 mb-3">
+                <div class="form-group">
+                  <label for="cinema-file-input" class="block text-xs font-semibold uppercase tracking-wider mb-1">Select Photo from Device *</label>
+                  <input type="file" id="cinema-file-input" accept="image/*" class="admin-file-input" />
+                </div>
+                <div class="form-group">
+                  <label for="cinema-url-input" class="block text-xs font-semibold uppercase tracking-wider mb-1">Or Paste Image URL</label>
+                  <input type="url" id="cinema-url-input" placeholder="/assets/collections/... or https://..." class="admin-text-input" />
+                </div>
+              </div>
+
+              <div class="form-row-2 mb-3">
+                <div class="form-group">
+                  <label for="cinema-title-input" class="block text-xs font-semibold uppercase tracking-wider mb-1">Garment Title *</label>
+                  <input type="text" id="cinema-title-input" required placeholder="e.g. Royal Rani Pink Zari Ensemble" class="admin-text-input" />
+                </div>
+                <div class="form-group">
+                  <label for="cinema-category-select" class="block text-xs font-semibold uppercase tracking-wider mb-1">Collection Category *</label>
+                  <select id="cinema-category-select" class="admin-select-input">
+                    <option value="Banarasi Chanderi">Banarasi &amp; Chanderi Silk</option>
+                    <option value="Handloom Bandhani">Handloom Bandhani</option>
+                    <option value="Designer Blouse">Designer Blouse Studio</option>
+                    <option value="Western Couture">Western &amp; Fusion Wear</option>
+                    <option value="Contemporary">Contemporary Styles</option>
+                    <option value="Custom Bridal">Custom Bridal &amp; Festive</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row-2 mb-3">
+                <div class="form-group">
+                  <label for="cinema-price-input" class="block text-xs font-semibold uppercase tracking-wider mb-1">Price (INR) *</label>
+                  <input type="number" id="cinema-price-input" required placeholder="5800" min="500" step="50" class="admin-text-input" />
+                </div>
+                <div class="form-group flex items-end">
+                  <button type="submit" class="btn btn-primary w-full" id="btn-save-cinema-item">
+                    + Publish to Live Cinema Strip
+                  </button>
+                </div>
+              </div>
+
+              <!-- Live Preview of Uploaded Photo -->
+              <div id="cinema-upload-preview" class="cinema-preview-box" style="display:none;">
+                <span class="preview-label">Selected Preview:</span>
+                <img id="cinema-preview-img" src="" alt="Upload Preview" />
+              </div>
+            </form>
+          </div>
+
+          <!-- Active Cinema Strip Photos Table -->
+          <div class="admin-cinema-active-list mt-8">
+            <div class="flex justify-between items-center mb-3">
+              <h5 class="active-list-title">Currently Active Cinema Strip Photos (<span id="cinema-items-count">0</span>)</h5>
+              <button type="button" class="btn-reset-cinema" id="btn-reset-cinema-defaults">
+                &circlearrowleft; Reset to Folder Default Reel
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Preview</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-cinema-tbody">
+                  <!-- Dynamically populated from localStorage -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Defer non-critical execution to maintain 100 First Contentful Paint -->
+  <script src="script.js" defer></script>
+</body>
+</html>`;
+
+fs.writeFileSync('public/index.html', html);
+console.log('Successfully wrote performance-optimized public/index.html! Length:', html.length);

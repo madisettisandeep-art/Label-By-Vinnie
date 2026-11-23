@@ -1,0 +1,40 @@
+export const SITE_CONFIG = {
+  name: 'LABEL BY VINNIE',
+  coFounder: 'Vinnie Vajinepalli',
+  instagramHandle: '@label_by_vinnie',
+  instagramUrl: 'https://www.instagram.com/label_by_vinnie/',
+  tagline: 'Unlimited Fashion Choices',
+  subTagline: 'Your Style. Your Expression. Your Story.',
+  description:
+    "Discover elegant ethnic wear, western fashion, contemporary styles and customized outfits at LABEL BY VINNIE. Handcrafted luxury shipped across India & USA.",
+  url: 'https://labelbyvinnie.com',
+  whatsapp: {
+    rawNumber: '+91 81064 57406',
+    cleanNumber: '918106457406',
+    baseUrl: 'https://wa.me/918106457406',
+  },
+  heroVideo: {
+    src: '/assets/hero/hero-video.mp4',
+    poster: '/assets/products/banarasi-chanderi-pink-set-main.jpg',
+    duration: 30.0,
+    fps: 24,
+    totalFrames: 720,
+    aspectRatio: '16/9',
+  },
+  brandPalette: {
+    antiqueBrown: '#67471A',
+    warmIvory: '#F3EDE1',
+    deepEspresso: '#3B2819',
+    mutedTaupe: '#A18F78',
+    champagneGold: '#C5A059',
+    champagneBeige: '#D8C8AD',
+    softIvory: '#FAF7F0',
+  },
+  navLinks: [
+    { label: 'Home', href: '/' },
+    { label: 'Shop By Collection', href: '/#collections' },
+    { label: 'Custom Stitching', href: '/custom-stitching' },
+    { label: 'Our Story', href: '/#story' },
+    { label: 'Contact', href: '/#contact' },
+  ],
+};
