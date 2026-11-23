@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2.2" />
 </head>
 <body class="bg-warm-ivory text-espresso">
 
@@ -110,7 +110,7 @@
         </a>
 
         <!-- Cart Button -->
-        <button type="button" class="action-btn cart-btn" id="cart-btn" aria-label="Shopping Bag">
+        <button type="button" class="action-btn cart-btn" id="cart-btn" onclick="openCart()" aria-label="Shopping Bag">
           <svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -201,9 +201,9 @@
   <!-- D. Phase 10: Section 1 — Four Signature Collections (Animated Infinite Ribbon) -->
   <section id="collections" class="section-py bg-soft-ivory">
     <div class="site-container">
-      <div class="section-header text-center">
-        <h2 class="section-title">Best Sellers</h2>
-        <div class="title-divider"></div>
+      <div class="section-header text-center" style="text-align: center; margin: 0 auto 36px auto;">
+        <h2 class="section-title text-center" style="text-align: center; margin-left: auto; margin-right: auto;">Best Sellers</h2>
+        <div class="title-divider" style="margin-left: auto; margin-right: auto;"></div>
       </div>
     </div>
 
@@ -437,14 +437,21 @@
             </div>
           </div>
 
-          <button class="btn btn-primary btn-launch-studio mt-8" id="open-stitching-modal">
+          <button class="btn btn-primary btn-launch-studio" id="open-stitching-modal" style="margin-top: 48px; display: inline-flex; align-items: center; gap: 8px;">
             LAUNCH CUSTOM MEASUREMENT STUDIO
           </button>
         </div>
 
         <div class="stitching-preview">
+          <!-- Video Selection Option Tabs (Both, Potli Sleeves, Sweetheart Neck) -->
+          <div class="studio-video-header-tabs" id="studio-video-header-tabs">
+            <button type="button" class="video-tab-btn active" data-view="both">Both</button>
+            <button type="button" class="video-tab-btn" data-view="potli">Potli Sleeves</button>
+            <button type="button" class="video-tab-btn" data-view="sweetheart">Sweetheart Neck</button>
+          </div>
+
           <div class="studio-video-container" id="studio-video-container">
-            <div class="preview-videos-grid" id="preview-videos-grid">
+            <div class="preview-videos-grid view-both" id="preview-videos-grid">
               
               <!-- Video 1: Potli Sleeves -->
               <div class="video-wrapper active" id="wrapper-video-1" data-video-index="1" title="Tap to toggle music">
@@ -1206,7 +1213,7 @@
   </footer>
 
   <!-- J. Slide-Out Cart Drawer -->
-  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" aria-hidden="true">
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" style="position: fixed; inset: 0; z-index: 9999; display: none;" aria-hidden="true">
     <div class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
       <div class="drawer-header">
         <h3 id="cart-title">YOUR SHOPPING BAG (<span id="cart-items-count">0</span>)</h3>
@@ -1260,7 +1267,7 @@
             Product artisanal details and description.
           </p>
 
-          <form id="product-options-form" onsubmit="event.preventDefault(); addToBagFromModal();">
+          <form id="product-options-form" onsubmit="event.preventDefault();">
             <!-- 1. Size Selection -->
             <div class="modal-option-group">
               <label class="modal-option-label">
@@ -1352,7 +1359,7 @@
 
             <!-- 5. Action Buttons -->
             <div class="modal-actions-row">
-              <button type="submit" class="btn btn-primary btn-modal-add" id="modal-add-to-bag-btn">
+              <button type="button" class="btn btn-primary btn-modal-add" id="modal-add-to-bag-btn">
                 <span>ADD TO BAG &bull; </span>
                 <span id="modal-btn-price-display">&#8377;0</span>
               </button>
@@ -1630,6 +1637,6 @@
   </div>
 
   <!-- Defer non-critical execution to maintain 100 First Contentful Paint -->
-  <script src="script.js" defer></script>
+  <script src="script.js?v=2.2" defer></script>
 </body>
 </html>

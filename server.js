@@ -37,11 +37,8 @@ const COMPRESSIBLE_TYPES = new Set([
 ]);
 
 function getCacheControlHeader(ext) {
-  if (ext === '.html') {
-    return 'public, max-age=0, must-revalidate';
-  }
-  if (ext === '.css' || ext === '.js') {
-    return 'public, max-age=86400, stale-while-revalidate=604800'; // 1 day + 7 day SWR
+  if (ext === '.html' || ext === '.css' || ext === '.js') {
+    return 'no-cache, no-store, must-revalidate';
   }
   if (['.jpg', '.jpeg', '.png', '.webp', '.svg', '.woff2', '.woff', '.ttf', '.mp4'].includes(ext)) {
     return 'public, max-age=2592000, immutable'; // 30 days immutable CDN cache
