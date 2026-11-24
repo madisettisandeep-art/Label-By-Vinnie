@@ -43,9 +43,14 @@ export interface CartItem {
   productId: string;
   name: string;
   price: number;
+  basePrice?: number;
   image: string;
   size: string;
   color?: string;
+  stitchingOption?: 'standard' | 'custom' | 'unstitched';
+  stitchingPrice?: number;
+  customMeasurements?: Record<string, string>;
+  fittingNotes?: string;
   quantity: number;
   isCustom?: boolean;
 }

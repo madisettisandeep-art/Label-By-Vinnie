@@ -8,7 +8,6 @@ import { SITE_CONFIG } from '@/config/site';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { itemCount, setIsCartOpen } = useCart();
 
   useEffect(() => {
@@ -56,8 +55,8 @@ export function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-9">
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-9">
             {SITE_CONFIG.navLinks.map((item) => {
               if (item.label === 'Shop By Collection') {
                 return (
@@ -72,7 +71,7 @@ export function Header() {
                       </svg>
                     </button>
 
-                    <div className="absolute top-[calc(100%+14px)] left-1/2 -translate-x-1/2 w-64 bg-[#140d09]/95 backdrop-blur-md border border-champagne-gold/45 rounded shadow-2xl p-2.5 opacity-0 invisible pointer-events-none group-hover/coll:opacity-100 group-hover/coll:visible group-hover/coll:pointer-events-auto transition-all duration-200 z-50">
+                    <div className="absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-64 bg-[#140d09]/95 backdrop-blur-md border border-champagne-gold/45 rounded shadow-2xl p-2.5 opacity-0 invisible pointer-events-none group-hover/coll:opacity-100 group-hover/coll:visible group-hover/coll:pointer-events-auto transition-all duration-200 z-50 before:absolute before:-top-3.5 before:left-0 before:w-full before:h-3.5 before:content-['']">
                       <div className="text-[10px] tracking-[0.16em] uppercase font-bold text-champagne-gold px-3 py-1.5 border-b border-champagne-gold/25">
                         SELECT COLLECTION
                       </div>
@@ -113,12 +112,12 @@ export function Header() {
           </nav>
 
           {/* Action Icons */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-4">
             <a
               href="https://www.instagram.com/label_by_vinnie/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 transition-transform duration-200 hover:-translate-y-0.5 hover:text-[#E1306C]"
+              className="inline-flex items-center justify-center p-1.5 transition-transform duration-200 hover:-translate-y-0.5 hover:text-[#E1306C]"
               aria-label="Follow Label By Vinnie on Instagram"
               title="Follow @label_by_vinnie on Instagram"
             >
@@ -131,7 +130,7 @@ export function Header() {
 
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-1.5 transition-transform duration-200 hover:-translate-y-0.5 hover:text-champagne-gold"
+              className="relative inline-flex items-center justify-center p-1.5 transition-transform duration-200 hover:-translate-y-0.5 hover:text-champagne-gold"
               aria-label="Open Shopping Bag"
             >
               <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
@@ -140,66 +139,14 @@ export function Header() {
                 <path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1.5 w-4 h-4 rounded-full bg-antique-brown text-soft-ivory text-[0.62rem] font-bold flex items-center justify-center">
+                <span className="absolute -top-1 -right-1.5 w-4 h-4 rounded-full bg-antique-brown text-soft-ivory text-[0.62rem] font-bold flex items-center justify-center shadow-sm">
                   {itemCount}
                 </span>
               )}
             </button>
-
-            {/* Mobile Menu Toggle Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 flex flex-col gap-1.5"
-              aria-label="Toggle Navigation Drawer"
-            >
-              <span className="w-6 h-[2px] bg-current"></span>
-              <span className="w-6 h-[2px] bg-current"></span>
-            </button>
           </div>
         </div>
       </header>
-
-      {/* Mobile Drawer */}
-      <div
-        className={`fixed inset-y-0 right-0 w-full max-w-sm bg-warm-ivory z-[2000] p-8 shadow-2xl flex flex-col justify-between transition-transform duration-500 ease-out lg:hidden ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        <div>
-          <div className="flex justify-between items-center pb-6 border-b border-taupe/20">
-            <span className="text-xs tracking-luxury text-antique-brown uppercase font-semibold">MENU</span>
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-2xl text-espresso hover:text-antique-brown"
-            >
-              &times;
-            </button>
-          </div>
-          <div className="flex flex-col gap-6 mt-8">
-            {SITE_CONFIG.navLinks.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="font-serif text-2xl text-espresso tracking-wide hover:text-champagne-gold transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <a
-            href={SITE_CONFIG.whatsapp.baseUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-center py-3.5 bg-antique-brown text-soft-ivory text-xs tracking-luxury uppercase font-semibold hover:bg-espresso transition-colors"
-          >
-            Direct WhatsApp: {SITE_CONFIG.whatsapp.rawNumber}
-          </a>
-        </div>
-      </div>
     </>
   );
 }

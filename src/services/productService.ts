@@ -117,6 +117,9 @@ export const VERIFIED_PRODUCTS: Product[] = [
     care: ['Dry clean only'],
     images: [
       '/assets/products/chanderi-zari-booti-suit-set.jpg',
+      '/assets/products/chanderi-zari-booti-set-main.jpg',
+      '/assets/products/chanderi-zari-color-variant.jpg',
+      '/assets/products/chanderi-zari-dupatta-drape.jpg',
       '/assets/fabrics/chanderi-zari-weave-texture.jpg',
     ],
     sizes: ['Unstitched Fabric Set', 'Custom Tailored to Measure'],
@@ -144,6 +147,9 @@ export const VERIFIED_PRODUCTS: Product[] = [
     care: ['Specialist dry clean only'],
     images: [
       '/assets/products/exclusive-banarasi-chanderi-mirror-set.jpg',
+      '/assets/products/banarasi-chanderi-pink-set-main.jpg',
+      '/assets/products/banarasi-chanderi-flatlay-ensemble.jpg',
+      '/assets/fabrics/banarasi-hand-mirror-work-detail.jpg',
     ],
     sizes: ['Fabric Material (Unstitched)', 'Bespoke Stitched by Vinnie'],
     colors: ['Royal Lilac Purple / Warm Gold'],

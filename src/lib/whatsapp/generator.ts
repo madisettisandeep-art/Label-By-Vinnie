@@ -2,37 +2,65 @@ import { SITE_CONFIG } from '@/config/site';
 import { Order, CustomStitchingEnquiry, Product } from '@/types';
 
 /**
- * Builds a secure, URL-encoded WhatsApp ordering link targeting +91 81064 57406
+ * Builds a comprehensive, URL-encoded WhatsApp ordering link targeting +91 81064 57406
+ * Preserves all customer selections: colour, size, stitching options, custom measurements, and tailoring notes.
  */
 export function generateCartOrderWhatsAppUrl(order: Order): string {
   const itemsText = order.items
-    .map(
-      (item) =>
-        `• ${item.name}\n  Size: ${item.size}${item.color ? ` | Colour: ${item.color}` : ''}\n  Qty: ${item.quantity} × ₹${item.price.toLocaleString('en-IN')}`
-    )
+    .map((item, index) => {
+      let details = `${index + 1}. ${item.name} (SKU: ${item.productId || 'LBV-ATELIER'})`;
+      details += `\n   • Size/Fit: ${item.size}`;
+      if (item.color) details += `\n   • Colour: ${item.color}`;
+      if (item.stitchingOption) {
+        details += `\n   • Stitching: ${item.stitchingOption.toUpperCase()}${item.stitchingPrice ? ` (+₹${item.stitchingPrice.toLocaleString('en-IN')})` : ''}`;
+      }
+
+      if (item.customMeasurements) {
+        const m = item.customMeasurements;
+        const measurementParts: string[] = [];
+        if (m.bust) measurementParts.push(`Bust: ${m.bust}"`);
+        if (m.waist) measurementParts.push(`Waist: ${m.waist}"`);
+        if (m.hip) measurementParts.push(`Hip: ${m.hip}"`);
+        if (m.shoulder) measurementParts.push(`Shoulder: ${m.shoulder}"`);
+        if (m.sleeveLength) measurementParts.push(`Sleeve: ${m.sleeveLength}"`);
+        if (m.blouseLength) measurementParts.push(`Blouse Length: ${m.blouseLength}"`);
+        if (m.garmentLength) measurementParts.push(`Garment Length: ${m.garmentLength}"`);
+
+        if (measurementParts.length > 0) {
+          details += `\n   • Custom Measurements: ${measurementParts.join(', ')}`;
+        }
+      }
+
+      if (item.fittingNotes) {
+        details += `\n   • Tailoring Instructions: ${item.fittingNotes}`;
+      }
+
+      const itemTotal = item.price * item.quantity;
+      details += `\n   • Price: ${item.quantity} × ₹${item.price.toLocaleString('en-IN')} = ₹${itemTotal.toLocaleString('en-IN')}`;
+
+      return details;
+    })
     .join('\n\n');
 
   const text = `Hello ${SITE_CONFIG.name},
 
-I would like to place an order.
+I would like to place a luxury atelier order:
 
-Order Reference: ${order.orderReference}
+ORDER REFERENCE: ${order.orderReference}
 
-Customer: ${order.customer.name}
-Phone: ${order.customer.phone}
+CUSTOMER DETAILS:
+• Name: ${order.customer.name}
+• Phone: ${order.customer.phone}${order.customer.email ? `\n• Email: ${order.customer.email}` : ''}
+• Dispatch Address: ${order.customer.address}, ${order.customer.city}, ${order.customer.state} - ${order.customer.postalCode}
 
-Products:
+ORDER SUMMARY:
 ${itemsText}
 
-Order Subtotal: ₹${order.subtotal.toLocaleString('en-IN')}
+TOTAL ORDER AMOUNT: ₹${order.subtotal.toLocaleString('en-IN')}
+${order.customer.notes ? `\nSPECIAL CLIENT REQUEST:\n"${order.customer.notes}"\n` : ''}
+Please confirm garment availability, dispatch timeline, and payment account details.
 
-Delivery Address:
-${order.customer.address}, ${order.customer.city}, ${order.customer.state} - ${order.customer.postalCode}
-${order.customer.notes ? `\nOrder Notes:\n${order.customer.notes}` : ''}
-
-Please confirm product availability, delivery charges and the next steps.
-
-Thank you.`;
+Thank you!`;
 
   return `${SITE_CONFIG.whatsapp.baseUrl}?text=${encodeURIComponent(text)}`;
 }
@@ -40,17 +68,17 @@ Thank you.`;
 /**
  * Generates direct product enquiry WhatsApp URL
  */
-export function generateProductEnquiryWhatsAppUrl(product: Product, size?: string): string {
+export function generateProductEnquiryWhatsAppUrl(product: Product, size?: string, color?: string): string {
   const text = `Hello ${SITE_CONFIG.name},
 
-I am interested in ordering:
-${product.name}
-${size ? `Size: ${size}` : ''}
-Estimated Price: ₹${product.price.toLocaleString('en-IN')}
+I am interested in consulting and ordering:
+• Garment: ${product.name} (SKU: ${product.id})
+• Category: ${product.categoryTitle}
+${size ? `• Preferred Size: ${size}\n` : ''}${color ? `• Preferred Colour: ${color}\n` : ''}• Listed Price: ₹${product.price.toLocaleString('en-IN')}
 
-Please share availability and customization options.
+Please share fabric details, availability, and bespoke tailoring options.
 
-Thank you.`;
+Thank you!`;
 
   return `${SITE_CONFIG.whatsapp.baseUrl}?text=${encodeURIComponent(text)}`;
 }
@@ -64,16 +92,16 @@ export function generateStitchingEnquiryWhatsAppUrl(enquiry: CustomStitchingEnqu
 
   const text = `Hello ${SITE_CONFIG.name},
 
-I would like to submit a Custom Stitching Enquiry.
+I would like to submit a Custom Stitching & Tailoring Consultation:
 
 Enquiry Reference: ${enquiry.referenceNumber}
 Client Name: ${enquiry.customerName}
 Phone: ${enquiry.customerPhone}
 
-Garment: ${enquiry.garmentType}
-Fabric: ${enquiry.fabricType}
+Garment Type: ${enquiry.garmentType}
+Fabric Selected: ${enquiry.fabricType}
 
-Measurements (${unit}):
+Custom Measurements (${unit}):
 • Bust: ${m.bust ?? '-'}
 • Waist: ${m.waist ?? '-'}
 • Hip: ${m.hip ?? '-'}
@@ -81,16 +109,16 @@ Measurements (${unit}):
 • Armhole: ${m.armhole ?? '-'}
 • Sleeve Length: ${m.sleeveLength ?? '-'}
 • Garment Length: ${m.garmentLength ?? '-'}
-• Front Neck: ${m.frontNeckDepth ?? '-'}
-• Back Neck: ${m.backNeckDepth ?? '-'}
+• Front Neck Depth: ${m.frontNeckDepth ?? '-'}
+• Back Neck Depth: ${m.backNeckDepth ?? '-'}
 
 Design Instructions:
 ${enquiry.designNotes || 'Standard bespoke tailoring as per atelier guidance.'}
-${enquiry.preferredDate ? `Preferred Date: ${enquiry.preferredDate}` : ''}
+${enquiry.preferredDate ? `Preferred Delivery Date: ${enquiry.preferredDate}` : ''}
 
-Please provide a quotation and completion timeline.
+Please provide a custom stitching quotation and delivery timeline.
 
-Thank you.`;
+Thank you!`;
 
   return `${SITE_CONFIG.whatsapp.baseUrl}?text=${encodeURIComponent(text)}`;
 }

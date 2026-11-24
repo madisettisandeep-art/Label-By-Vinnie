@@ -47,16 +47,26 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, [items]);
 
   const addToCart = (newItem: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
+    const qtyToAdd = newItem.quantity && newItem.quantity > 0 ? newItem.quantity : 1;
     setItems((prev) => {
-      const existing = prev.find((item) => item.id === newItem.id && item.size === newItem.size);
-      if (existing) {
-        return prev.map((item) =>
-          item.id === newItem.id && item.size === newItem.size
-            ? { ...item, quantity: item.quantity + (newItem.quantity || 1) }
-            : item
-        );
+      // Look for identical item configuration (same product/id, size, color, stitching option)
+      const existingIndex = prev.findIndex(
+        (item) =>
+          ((item.productId && item.productId === newItem.productId) || item.id === newItem.id) &&
+          item.size === newItem.size &&
+          item.color === newItem.color &&
+          item.stitchingOption === newItem.stitchingOption
+      );
+
+      if (existingIndex > -1) {
+        const updated = [...prev];
+        updated[existingIndex] = {
+          ...updated[existingIndex],
+          quantity: updated[existingIndex].quantity + qtyToAdd,
+        };
+        return updated;
       }
-      return [...prev, { ...newItem, quantity: newItem.quantity || 1 }];
+      return [...prev, { ...newItem, quantity: qtyToAdd }];
     });
     setIsCartOpen(true);
   };

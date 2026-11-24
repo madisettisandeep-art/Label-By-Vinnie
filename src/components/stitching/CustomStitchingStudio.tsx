@@ -152,7 +152,7 @@ export function CustomStitchingStudio() {
 
             <button
               onClick={() => setIsOpen(true)}
-              className="mt-10 px-8 py-4 bg-antique-brown text-soft-ivory text-xs font-semibold tracking-luxury uppercase hover:bg-espresso transition-all shadow-xl"
+              className="mt-12 sm:mt-14 inline-block px-8 py-4 bg-antique-brown text-soft-ivory text-xs font-semibold tracking-luxury uppercase hover:bg-espresso transition-all shadow-xl border border-champagne-gold/30 hover:shadow-2xl"
             >
               LAUNCH CUSTOM MEASUREMENT STUDIO
             </button>
@@ -164,21 +164,32 @@ export function CustomStitchingStudio() {
             <div className="flex gap-2 mb-3">
               <button
                 type="button"
-                onClick={() => setActiveView('split')}
-                className={`text-[0.7rem] uppercase tracking-luxury px-3 py-1.5 font-medium transition-all rounded-sm border ${
+                onClick={() => {
+                  setActiveView('split');
+                  setTimeout(() => {
+                    video1Ref.current?.play().catch(() => {});
+                    video2Ref.current?.play().catch(() => {});
+                  }, 50);
+                }}
+                className={`text-[0.7rem] uppercase tracking-luxury px-3.5 py-1.5 font-medium transition-all rounded-sm border ${
                   activeView === 'split'
-                    ? 'bg-espresso text-soft-ivory border-espresso font-semibold'
+                    ? 'bg-espresso text-soft-ivory border-espresso font-semibold shadow-sm'
                     : 'bg-warm-ivory text-espresso border-champagne-gold/30 hover:border-champagne-gold'
                 }`}
               >
-                Side by Side
+                Both
               </button>
               <button
                 type="button"
-                onClick={() => setActiveView('video1')}
-                className={`text-[0.7rem] uppercase tracking-luxury px-3 py-1.5 font-medium transition-all rounded-sm border ${
+                onClick={() => {
+                  setActiveView('video1');
+                  setTimeout(() => {
+                    video1Ref.current?.play().catch(() => {});
+                  }, 50);
+                }}
+                className={`text-[0.7rem] uppercase tracking-luxury px-3.5 py-1.5 font-medium transition-all rounded-sm border ${
                   activeView === 'video1'
-                    ? 'bg-espresso text-soft-ivory border-espresso font-semibold'
+                    ? 'bg-espresso text-soft-ivory border-espresso font-semibold shadow-sm'
                     : 'bg-warm-ivory text-espresso border-champagne-gold/30 hover:border-champagne-gold'
                 }`}
               >
@@ -186,14 +197,19 @@ export function CustomStitchingStudio() {
               </button>
               <button
                 type="button"
-                onClick={() => setActiveView('video2')}
-                className={`text-[0.7rem] uppercase tracking-luxury px-3 py-1.5 font-medium transition-all rounded-sm border ${
+                onClick={() => {
+                  setActiveView('video2');
+                  setTimeout(() => {
+                    video2Ref.current?.play().catch(() => {});
+                  }, 50);
+                }}
+                className={`text-[0.7rem] uppercase tracking-luxury px-3.5 py-1.5 font-medium transition-all rounded-sm border ${
                   activeView === 'video2'
-                    ? 'bg-espresso text-soft-ivory border-espresso font-semibold'
+                    ? 'bg-espresso text-soft-ivory border-espresso font-semibold shadow-sm'
                     : 'bg-warm-ivory text-espresso border-champagne-gold/30 hover:border-champagne-gold'
                 }`}
               >
-                Sweetheart Neck
+                Sweet Heart Neck
               </button>
             </div>
 

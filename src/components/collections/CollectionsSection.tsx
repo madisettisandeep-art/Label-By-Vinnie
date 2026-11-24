@@ -22,7 +22,7 @@ export function CollectionsSection() {
 
       {/* Infinite Scrolling Ribbon (Right to Left with Hover-to-Pause, Clean edge to edge) */}
       <div className="relative w-full overflow-hidden py-2 group">
-        <div className="flex w-max gap-5 animate-marquee-left group-hover:[animation-play-state:paused] will-change-transform">
+        <div className="flex w-max gap-5 animate-marquee-left group-hover:[animation-play-state:paused] hover:[animation-play-state:paused] will-change-transform">
           {duplicatedCollections.map((col, idx) => (
             <Link
               key={`${col.id}-${idx}`}
