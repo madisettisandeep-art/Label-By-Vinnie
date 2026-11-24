@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrandIntro } from '@/components/layout/BrandIntro';
-import { CinematicFashionHero } from '@/components/hero/CinematicFashionHero';
+import { CampaignHeroCarousel } from '@/components/hero/CampaignHeroCarousel';
 import { CollectionsSection } from '@/components/collections/CollectionsSection';
 import { FeaturedProducts } from '@/components/products/FeaturedProducts';
 import { CustomStitchingStudio } from '@/components/stitching/CustomStitchingStudio';
@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <>
       <BrandIntro />
-      <CinematicFashionHero />
+      <CampaignHeroCarousel />
       <CollectionsSection />
       <FeaturedProducts />
       <CustomStitchingStudio />

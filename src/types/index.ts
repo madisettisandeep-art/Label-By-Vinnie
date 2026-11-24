@@ -105,3 +105,19 @@ export interface CustomStitchingEnquiry {
   status: 'PENDING_REVIEW' | 'QUOTATION_SENT' | 'CONFIRMED' | 'IN_PRODUCTION' | 'COMPLETED';
   createdAt: string;
 }
+
+export interface HeroBanner {
+  id: string;
+  title: string;
+  subtitle: string;
+  desktop_image_url: string;
+  mobile_image_url?: string;
+  cta_text: string;
+  destination_url: string;
+  display_order: number;
+  is_active: boolean;
+  starts_at?: string | null;
+  ends_at?: string | null;
+  created_at?: string;
+  updated_at?: string;
+}

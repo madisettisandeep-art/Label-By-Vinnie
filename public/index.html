@@ -122,43 +122,52 @@
     </div>
   </header>
 
-  <!-- C. Phase 2 & 5: Cinematic Hero Section with Controlled Scrubbing Video -->
-  <section id="hero" class="cinematic-hero-section hero-scroll-section">
-    <!-- Pinned 1200vh Scroll Track -->
-    <div class="hero-pinned-track hero-track" id="hero-track">
-      <div class="hero-sticky-viewport hero-sticky-stage">
-        <!-- 30-Second Cinematic Hero Video -->
-        <video
-          id="hero-fashion-video"
-          src="/assets/hero/hero-video.mp4"
-          poster="/assets/hero/frames/frame_0001.jpg"
-          muted
-          playsinline
-          preload="auto"
-          class="hero-video hero-video-frame"
-          aria-label="Label by Vinnie 30s 3D Fashion Animation"
-        ></video>
+  <!-- C. Premium Campaign Hero Carousel (Full Viewport Width ~2.4:1) -->
+  <section id="hero" class="campaign-hero-section" aria-label="Fashion Campaigns">
+    <div class="campaign-carousel-container" id="campaign-carousel">
+      <!-- Slide 1: The New Collection -->
+      <div class="campaign-slide active" data-index="0">
+        <a href="#shop" class="campaign-slide-link" title="The New Collection — Elegance, woven into every detail.">
+          <img src="/assets/campaigns/new-collection-purple-campaign.jpg" alt="The New Collection — Label By Vinnie Luxury Indian Ethnic Wear" class="campaign-image" />
+          <div class="campaign-vignette"></div>
+        </a>
+      </div>
+      <!-- Slide 2: Custom Stitching -->
+      <div class="campaign-slide" data-index="1">
+        <a href="#custom-stitching" class="campaign-slide-link" title="Custom Stitching — Tailored to your elegance.">
+          <img src="/assets/campaigns/custom-stitching-campaign.jpg" alt="Custom Stitching — Bespoke Indian Couture by Vinnie" class="campaign-image" />
+          <div class="campaign-vignette"></div>
+        </a>
+      </div>
+      <!-- Slide 3: Timeless. Elegant. Yours. -->
+      <div class="campaign-slide" data-index="2">
+        <a href="#shop" class="campaign-slide-link" title="Timeless. Elegant. Yours. — Discover the art of Indian ethnic fashion.">
+          <img src="/assets/campaigns/timeless-ethnic-fashion.jpg" alt="Timeless. Elegant. Yours. — Banarasi & Chanderi Silks" class="campaign-image" />
+          <div class="campaign-vignette"></div>
+        </a>
+      </div>
+      <!-- Slide 4: New Arrivals -->
+      <div class="campaign-slide" data-index="3">
+        <a href="#shop" class="campaign-slide-link" title="New Arrivals — Contemporary cuts meet authentic craftsmanship.">
+          <img src="/assets/campaigns/the-new-collection-clean.jpg" alt="New Arrivals — Designer Ensembles" class="campaign-image" />
+          <div class="campaign-vignette"></div>
+        </a>
+      </div>
 
-        <!-- Brand Watermark Logo Badge (Covering Google Flow mark throughout Hero) -->
-        <div class="hero-watermark-cover hero-watermark-overlay" id="hero-watermark-overlay" aria-hidden="true">
-          <img src="/assets/brand/logo.jpg" alt="Label By Vinnie Logo" class="hero-watermark-logo-img" />
-          <span class="hero-watermark-brand-name hero-watermark-text">LABEL BY VINNIE</span>
-        </div>
+      <!-- Navigation Arrows -->
+      <button type="button" class="carousel-arrow prev-arrow" id="carousel-prev-btn" aria-label="Previous campaign banner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button type="button" class="carousel-arrow next-arrow" id="carousel-next-btn" aria-label="Next campaign banner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
 
-        <!-- End of Scroll Grand Welcome Title -->
-        <div class="hero-welcome-overlay" id="hero-welcome-overlay">
-          <div class="hero-welcome-content">
-            <span class="welcome-top-tag" style="display:block; font-size:0.75rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--color-champagne-gold); margin-bottom:12px; font-weight:600;">UNLIMITED FASHION CHOICES</span>
-            <h2 class="hero-welcome-title welcome-grand-heading">Welcome to the World Of<br /><span class="brand-glow" style="color:var(--color-champagne-gold);">Label By Vinnie</span></h2>
-            <p class="hero-welcome-subtitle welcome-sub">Authentic Banarasi Chanderi &bull; Handloom Bandhani &bull; Bespoke Tailoring</p>
-            <a href="#shop" class="hero-welcome-btn btn-welcome-explore">BEST SELLERS &darr;</a>
-          </div>
-        </div>
-
-        <!-- Thin Vertical Scroll Progress Line (Right Side) -->
-        <div class="hero-scroll-indicator-right hero-timeline-track" aria-hidden="true">
-          <div class="hero-scroll-indicator-fill hero-timeline-progress" id="hero-timeline-progress"></div>
-        </div>
+      <!-- Slide Indicators -->
+      <div class="carousel-indicators" id="carousel-indicators">
+        <button type="button" class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
+        <button type="button" class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
+        <button type="button" class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
+        <button type="button" class="carousel-dot" data-slide="3" aria-label="Slide 4"></button>
       </div>
     </div>
   </section>
