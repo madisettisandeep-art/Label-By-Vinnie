@@ -273,9 +273,18 @@ function updateVideoScrub() {
   if (heroVideo && !prefersReducedMotion) {
     if (heroVideo.readyState >= 1) isVideoReady = true;
     if (isVideoReady) {
+      if (!heroVideo.paused) heroVideo.pause();
       const diff = targetVideoTime - heroVideo.currentTime;
-      if (Math.abs(diff) > 0.02) {
-        heroVideo.currentTime += diff * 0.08;
+      const absDiff = Math.abs(diff);
+      if (absDiff > 0.025) {
+        const factor = absDiff > 1.2 ? 0.50 : absDiff > 0.4 ? 0.38 : 0.28;
+        let step = diff * factor;
+        if (Math.abs(step) < 0.038) {
+          step = diff > 0 ? Math.min(diff, 0.041) : Math.max(diff, -0.041);
+        }
+        try {
+          heroVideo.currentTime = Math.min(Math.max(heroVideo.currentTime + step, 0), VIDEO_DURATION);
+        } catch (e) {}
       }
     }
   }

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-label="Label By Vinnie Emblem">
+  <circle cx="32" cy="32" r="30" fill="#140D09" stroke="#C5A059" stroke-width="1.8" />
+  <circle cx="32" cy="32" r="27" fill="none" stroke="#C5A059" stroke-width="0.8" stroke-dasharray="2.5 2.5" opacity="0.65" />
+  
+  <!-- Atelier Arch -->
+  <path d="M22 43 V 28 C 22 20, 42 20, 42 28 V 43" stroke="#C5A059" stroke-width="1.4" fill="none" stroke-linecap="round" />
+  
+  <!-- Dressmaker Mannequin Silhouette -->
+  <path d="M29 23 H35 L36.5 25.5 L35 30 C34 32.5, 35 34.5, 37.5 38 H26.5 C29 34.5, 30 32.5, 29 30 L27.5 25.5 Z" fill="#C5A059" />
+  <!-- Stand pole & base -->
+  <line x1="32" y1="38" x2="32" y2="45" stroke="#C5A059" stroke-width="1.6" stroke-linecap="round" />
+  <path d="M26 46.5 C28.5 45, 35.5 45, 38 46.5" stroke="#C5A059" stroke-width="1.6" stroke-linecap="round" fill="none" />
+  
+  <!-- Sparkles -->
+  <path d="M42 19 Q42 21.5 44.5 21.5 Q42 21.5 42 24 Q42 21.5 39.5 21.5 Q42 21.5 42 19 Z" fill="#D8C8AD" />
+  <path d="M44.5 26.5 Q44.5 28 46 28 Q44.5 28 44.5 29.5 Q44.5 28 43 28 Q44.5 28 44.5 26.5 Z" fill="#D8C8AD" opacity="0.85" />
+</svg>
